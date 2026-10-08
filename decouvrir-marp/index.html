@@ -13,7 +13,7 @@
 
 <h1 id="d%C3%A9couvrir-marp">Découvrir Marp</h1>
 <ul>
-<li>Présentations en Markdown</li>
+<li>Présentations Markdown</li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
@@ -21,11 +21,11 @@
 <header>Découvrir Marp</header>
 <h1 id="sommaire">Sommaire</h1>
 <ul>
-<li>Marp : outil et usages</li>
-<li>Installation : VS Code, npm, Docker</li>
-<li>Syntaxe : Markdown, directives</li>
-<li>Thèmes, images, exports</li>
-<li>Bonnes pratiques, comparaison, mémo</li>
+<li>Définition et usages</li>
+<li>Avantages</li>
+<li>Installation VS Code, CLI</li>
+<li>Syntaxe, directives, thèmes</li>
+<li>Prévisualisation, export, bonnes pratiques</li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
@@ -35,9 +35,9 @@
 <ul>
 <li>Écosystème de présentations Markdown</li>
 <li>Marp for VS Code : édition, aperçu</li>
-<li>Marp CLI : exports en ligne de commande</li>
-<li>Marpit : moteur de rendu</li>
-<li>Source texte, historique Git</li>
+<li>Marp CLI : génération multi-format</li>
+<li>Marpit : moteur de rendu HTML</li>
+<li>Source texte, versionnable avec Git</li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
@@ -45,41 +45,42 @@
 <header>Découvrir Marp</header>
 <h1 id="pourquoi-utiliser-marp">Pourquoi utiliser Marp ?</h1>
 <ul>
-<li>Rédaction rapide en Markdown</li>
-<li>Historique et collaboration avec Git</li>
-<li>Thèmes et styles réutilisables</li>
+<li>Rédaction rapide</li>
+<li>Révisions versionnées avec Git</li>
+<li>Thèmes et CSS réutilisables</li>
 <li>Exports multiples, source unique</li>
-<li>Génération automatisée avec la CLI</li>
+<li>Automatisation via CLI</li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="5" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="5" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
-<h1 id="installer-marp">Installer Marp</h1>
-<h2 id="dans-visual-studio-code">Dans Visual Studio Code</h2>
+<h1 id="installer-marp--vs-code">Installer Marp : VS Code</h1>
 <ul>
-<li>Extension : Marp for VS Code</li>
+<li>Installer l’extension Marp for VS Code</li>
+<li>Ouvrir un fichier <code>.md</code></li>
+<li>Lancer l’aperçu Marp intégré</li>
+<li>Prérequis : Visual Studio Code</li>
 </ul>
-<h2 id="avec-npm">Avec npm</h2>
-<ul>
-<li>Prérequis : Node.js, npm</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">npm install --global @marp-team/marp-cli
-marp --version
-</code></pre>
-<h2 id="avec-docker">Avec Docker</h2>
-<ul>
-<li>Prérequis : Docker Desktop</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-powershell">docker run <span class="hljs-literal">--rm</span> <span class="hljs-literal">-v</span> <span class="hljs-string">&quot;<span class="hljs-variable">$</span>{PWD}:/work&quot;</span> marpteam/marp<span class="hljs-literal">-cli</span> /work/presentation.md <span class="hljs-literal">--pdf</span> <span class="hljs-literal">-o</span> /work/presentation.pdf
-</code></pre>
 <footer>Atelier de présentation</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="6" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="6" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
+<h1 id="installer-marp--cli-et-docker">Installer Marp : CLI et Docker</h1>
+<ul>
+<li>Prérequis : Node.js ou Docker Desktop</li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">npm install -g @marp-team/marp-cli
+marp --version
+docker run --<span class="hljs-built_in">rm</span> marpteam/marp-cli --version
+</code></pre>
+<footer>Atelier de présentation</footer>
+</section>
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="7" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
+<header>Découvrir Marp</header>
 <h1 id="structure-dun-fichier-marp">Structure d’un fichier Marp</h1>
 <ul>
-<li>Front matter : configuration du document</li>
+<li>Front matter : configuration globale</li>
 <li><code>---</code> : nouvelle diapositive</li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">---
@@ -89,158 +90,84 @@ paginate: true
 <span class="hljs-section">size: 16:9
 ---</span>
 
-<span class="hljs-section"># Première diapositive</span>
-
+<span class="hljs-section"># Titre</span>
 <span class="hljs-bullet">-</span> Message clé
-
----
-
-<span class="hljs-section"># Deuxième diapositive</span>
-
-<span class="hljs-bullet">-</span> Nouvelle idée
 </code></pre>
 <footer>Atelier de présentation</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="7" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="7" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="8" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
-<h1 id="markdown-pour-pr%C3%A9senter-une-id%C3%A9e">Markdown pour présenter une idée</h1>
-<ul>
-<li><strong>Gras</strong> : notions clés</li>
-<li><em>Italique</em> : nuances</li>
-<li><code>Code</code> : commandes, fichiers</li>
-<li><code>---</code> : séparation des diapositives</li>
-<li>Une idée principale par slide</li>
-</ul>
-<footer>Atelier de présentation</footer>
-</section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="8" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-class="lead" data-theme="default" lang="fr-FR" class="lead" data-marpit-pagination="8" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--class:lead;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
-<header>Découvrir Marp</header>
-
 <h1 id="directives-marp">Directives Marp</h1>
-<table>
-<thead>
-<tr>
-<th>Portée</th>
-<th>Exemple</th>
-<th>Effet</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Document</td>
-<td><code>theme: gaia</code></td>
-<td>Thème global</td>
-</tr>
-<tr>
-<td>Document</td>
-<td><code>paginate: true</code></td>
-<td>Pagination globale</td>
-</tr>
-<tr>
-<td>Diapositive</td>
-<td><code>&lt;!-- _class: lead --&gt;</code></td>
-<td>Classe locale</td>
-</tr>
-<tr>
-<td>Diapositive</td>
-<td><code>&lt;!-- _backgroundColor: #eaf5fb --&gt;</code></td>
-<td>Fond local</td>
-</tr>
-</tbody>
-</table>
+<ul>
+<li>Globales : <code>theme</code>, <code>paginate</code></li>
+<li>Locales : <code>_class</code>, <code>_backgroundColor</code>, <code>_color</code></li>
+</ul>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">&lt;!-- <span class="hljs-emphasis">_class: lead --&gt;
+# Titre de la diapositive
+</span></code></pre>
 <footer>Atelier de présentation</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-background-color="#eaf5fb" data-color="#174a6e" data-theme="default" lang="fr-FR" data-marpit-pagination="9" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--background-color:#eaf5fb;--color:#174a6e;--theme:default;color:#174a6e;background-color:#eaf5fb;background-image:none;" data-marpit-pagination-total="16" data-size="16:9">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="9" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="9" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
-
-<h1 id="modifier-une-seule-diapositive">Modifier une seule diapositive</h1>
+<h1 id="th%C3%A8mes-et-personnalisation">Thèmes et personnalisation</h1>
 <ul>
-<li><code>_</code> : directive pour la slide active</li>
+<li>Thèmes : <code>default</code>, <code>gaia</code>, <code>uncover</code></li>
+<li>CSS global : balise <code>&lt;style&gt;</code></li>
+<li>Style des diapositives : sélecteur <code>section</code></li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">&lt;!-- <span class="hljs-emphasis">_backgroundColor: #eaf5fb --&gt;
-&lt;!-- _</span>color: #174a6e --&gt;
-
-<span class="hljs-section"># Titre de la diapositive</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
+<span class="hljs-selector-tag">section</span> { <span class="hljs-attribute">color</span>: <span class="hljs-number">#174a6e</span>; }
+</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
 </code></pre>
 <footer>Atelier de présentation</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="10" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="10" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
-<h1 id="th%C3%A8mes-et-personnalisation">Thèmes et personnalisation</h1>
+<h1 id="images-et-arri%C3%A8re-plans">Images et arrière-plans</h1>
 <ul>
-<li>Thèmes intégrés : <code>default</code>, <code>gaia</code>, <code>uncover</code></li>
-<li>Personnalisation : CSS dans <code>&lt;style&gt;</code></li>
+<li>Image : <code>![Alt](images/a.png)</code></li>
 </ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-yaml"><span class="hljs-attr">theme:</span> <span class="hljs-string">default</span>
-</code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-html"><span class="hljs-tag">&lt;<span class="hljs-name">style</span>&gt;</span><span class="language-css">
-<span class="hljs-selector-tag">section</span> {
-  <span class="hljs-attribute">font-family</span>: <span class="hljs-string">&quot;Aptos&quot;</span>, sans-serif;
-}
-
-<span class="hljs-selector-tag">section</span> <span class="hljs-selector-tag">h1</span> {
-  <span class="hljs-attribute">color</span>: <span class="hljs-number">#174a6e</span>;
-}
-</span><span class="hljs-tag">&lt;/<span class="hljs-name">style</span>&gt;</span>
+<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">![<span class="hljs-string">bg right:40%</span>](<span class="hljs-link">images/a.png</span>)
 </code></pre>
 <ul>
-<li>Styles partagés : thème CSS Marp</li>
+<li>Options : <code>cover</code>, <code>contain</code>, <code>right</code></li>
+<li>Chemins relatifs au Markdown</li>
+<li>Texte alternatif descriptif</li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="11" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="11" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
-<h1 id="images-et-arri%C3%A8re-plans">Images et arrière-plans</h1>
+<h1 id="pr%C3%A9visualiser-dans-vs-code">Prévisualiser dans VS Code</h1>
 <ul>
-<li>Image intégrée au contenu</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">![<span class="hljs-string">Description de l’image</span>](<span class="hljs-link">images/schema.png</span>)
-</code></pre>
-<ul>
-<li>Image d’arrière-plan</li>
-</ul>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">![<span class="hljs-string">bg right:40%</span>](<span class="hljs-link">images/illustration.png</span>)
-</code></pre>
-<ul>
-<li>Options : <code>left</code>, <code>right</code>, <code>cover</code>, <code>contain</code></li>
-<li>Texte alternatif : description de l’image</li>
+<li>Palette : <code>Ctrl+Shift+P</code></li>
+<li>Aperçu : <code>Marp: Open Preview</code></li>
+<li>Aperçu latéral : <code>Marp: Open Preview to the Side</code></li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="12" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="12" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
-<h1 id="pr%C3%A9visualiser-et-exporter">Prévisualiser et exporter</h1>
-<h2 id="pr%C3%A9visualiser-dans-vs-code">Prévisualiser dans VS Code</h2>
+<h1 id="exporter--cli-et-vs-code">Exporter : CLI et VS Code</h1>
 <ul>
-<li><code>Marp: Open Preview</code></li>
-<li><code>Marp: Open Preview to the Side</code></li>
-</ul>
-<h2 id="exporter-avec-la-cli">Exporter avec la CLI</h2>
-<ul>
-<li>Formats : HTML, PDF, PPTX, PNG</li>
+<li>VS Code : <code>Ctrl+Shift+P</code> → <code>Marp: Export</code></li>
 </ul>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">marp presentation.md --html
 marp presentation.md --pdf
 marp presentation.md --pptx
 marp presentation.md --images png
 </code></pre>
-<pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-bash">marp presentation.md --pdf -o exports/presentation.pdf
-</code></pre>
-<ul>
-<li>PDF : navigateur compatible requis</li>
-</ul>
 <footer>Atelier de présentation</footer>
 </section>
 </foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="13" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="13" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
 <h1 id="bonnes-pratiques">Bonnes pratiques</h1>
 <ul>
-<li>Une idée principale par diapositive</li>
-<li>Titres informatifs, listes courtes</li>
+<li>Une idée principale par slide</li>
+<li>Titres informatifs, listes concises</li>
 <li>Contraste élevé, typographie lisible</li>
-<li>Texte alternatif pour chaque image</li>
-<li>Prévisualisation avant chaque export</li>
-<li>Chemins d’images vérifiés, commits Git</li>
+<li>Textes alternatifs, chemins vérifiés</li>
+<li>Aperçu avant export et partage</li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
@@ -252,39 +179,29 @@ marp presentation.md --images png
 <tr>
 <th>Critère</th>
 <th>Marp</th>
-<th>PowerPoint / Google Slides</th>
+<th>Slides</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>Création</td>
-<td>Markdown et éditeur de texte</td>
-<td>Interface graphique</td>
+<td>Markdown</td>
+<td>Interface</td>
 </tr>
 <tr>
-<td>Suivi des versions</td>
-<td>Naturel avec Git</td>
-<td>Possible, selon l’outil</td>
+<td>Versions</td>
+<td>Git</td>
+<td>Cloud</td>
 </tr>
 <tr>
-<td>Mise en page libre</td>
-<td>CSS et HTML possibles</td>
-<td>Outils graphiques intégrés</td>
+<td>Export</td>
+<td>CLI, multi-format</td>
+<td>Intégré</td>
 </tr>
 <tr>
-<td>Automatisation</td>
-<td>CLI et scripts</td>
-<td>Fonctions variables selon l’outil</td>
-</tr>
-<tr>
-<td>Formats de sortie</td>
-<td>HTML, PDF, PPTX, images</td>
-<td>Formats natifs et exports intégrés</td>
-</tr>
-<tr>
-<td>Idéal pour</td>
-<td>Contenu structuré et reproductible</td>
-<td>Composition visuelle directe et collaborative</td>
+<td>Mise en page</td>
+<td>CSS</td>
+<td>Visuelle</td>
 </tr>
 </tbody>
 </table>
@@ -295,46 +212,22 @@ marp presentation.md --images png
 <h1 id="m%C3%A9mo-marp">Mémo Marp</h1>
 <pre is="marp-pre" data-auto-scaling="downscale-only"><code class="language-markdown">---
 marp: true
-theme: default
-paginate: true
-<span class="hljs-section">size: 16:9
----</span>
-
-&lt;!-- <span class="hljs-emphasis">_class: lead --&gt;
-# Titre de la présentation
-
----
-
-# Nouvelle diapositive
-
-- Texte <span class="hljs-strong">**important**</span>
-- Image : `![<span class="hljs-string">Description</span>](<span class="hljs-link">images/figure.png</span>)`
-</span></code></pre>
+<span class="hljs-section"># Slide</span>
+</code></pre>
 <ul>
-<li><code>---</code> : nouvelle diapositive</li>
+<li><code>---</code> : nouvelle slide</li>
 <li><code>_class</code> : style local</li>
-<li><code>_backgroundColor</code> : fond local</li>
-<li><code>--pdf</code> : export PDF</li>
+<li><code>--pdf</code> : export</li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
-</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-class="lead" data-theme="default" lang="fr-FR" class="lead" data-marpit-pagination="16" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--class:lead;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
+</foreignObject></svg><svg data-marpit-svg="" viewBox="0 0 1280 720"><foreignObject width="1280" height="720"><section id="16" data-paginate="true" data-header="Découvrir Marp" data-footer="Atelier de présentation" data-theme="default" lang="fr-FR" data-marpit-pagination="16" style="--paginate:true;--header:Découvrir Marp;--footer:Atelier de présentation;--theme:default;" data-marpit-pagination-total="16" data-size="16:9">
 <header>Découvrir Marp</header>
-
 <h1 id="ressources">Ressources</h1>
 <ul>
-<li>
-<p><a href="https://marp.app">Site officiel de Marp</a></p>
-</li>
-<li>
-<p><a href="https://github.com/marp-team/marp-cli">Marp CLI sur GitHub</a></p>
-</li>
-<li>
-<p><a href="https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode">Marp for VS Code</a></p>
-</li>
-<li>
-<p>Prochaine étape : créer <code>presentation.md</code></p>
-</li>
+<li><a href="https://marp.app">Marp</a></li>
+<li><a href="https://github.com/marp-team/marp-cli">Marp CLI</a></li>
+<li><a href="https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode">Marp for VS Code</a></li>
 </ul>
 <footer>Atelier de présentation</footer>
 </section>
