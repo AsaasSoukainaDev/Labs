@@ -1,6 +1,6 @@
 # Plan de présentation
 
-[Ouvrir le squelette Marp — Plateforme de Webinaires](./plateforme-webinaires.md)
+[Markdown presentation](https://asaassoukainadev.github.io/Labs/presentation/index.html)
 
 ## Slide 1 — Page de garde
 
