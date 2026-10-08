@@ -7,32 +7,6 @@ header: "Découvrir Marp"
 footer: "Atelier de présentation"
 ---
 
-<style>
-section {
-  font-family: "Aptos", "Segoe UI", sans-serif;
-  color: #263746;
-  background: #f7fafc;
-}
-
-section h1,
-section h2 {
-  color: #174a6e;
-}
-
-section.lead {
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(135deg, #eaf5fb, #f8f6f0);
-}
-
-section.lead h1 {
-  color: #123b58;
-  font-size: 2.2em;
-}
-</style>
-
-<!-- _class: lead -->
-
 # Découvrir Marp
 
 - Présentations Markdown
@@ -207,6 +181,3 @@ marp: true
 
 # Ressources
 
-- [Marp](https://marp.app)
-- [Marp CLI](https://github.com/marp-team/marp-cli)
-- [Marp for VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
