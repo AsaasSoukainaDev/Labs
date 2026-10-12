@@ -66,7 +66,6 @@ L’utilisateur supervise, valide et vérifie les résultats.
 ---
 
 ## 4. Structure de prompt
-
 Goal: [ce qu’il faut construire ou corriger]
 Context: [projet, langage, framework]
 Scope: [où travailler, ce qu’il ne faut pas toucher]
@@ -74,31 +73,38 @@ Constraints: [règles, bibliothèques, style]
 Process: Montre-moi d’abord un plan, puis attends mon approbation.
 Done when: [comment vérifier que ça fonctionne]
 Output: Résume brièvement tes changements.
+```
 ---
-## 4.1 Éléments obligatoires
-Goal
 
-Context
+### 4.1 Éléments obligatoires
 
-Scope
-
-Done condition
+- Goal
+- Context
+- Scope
+- Done condition
 
 ## 5. Rules et Skills
-Fonctionnalité	Déclenchement	Utilisation
-Rules	Toujours actives	Consignes permanentes et rôles
-Skills	L’agent décide	Expertise réutilisable pour une tâche
-5.1 Créer une rule (rôle)
-Fichier : .agents/rules/backend-developer.md
 
-text
+| Fonctionnalité | Déclenchement | Utilisation |
+|---|---|---|
+| Rules | Toujours actives | Consignes permanentes et rôles |
+| Skills | L’agent décide | Expertise réutilisable pour une tâche |
+
+### 5.1 Créer une rule (rôle)
+
+Fichier : `.agents/rules/backend-developer.md`
+
+```text
 You are a senior Laravel backend developer.
 - Always show a short plan before changing files.
 - Never touch the .env file.
-## 5.2 Créer une skill
-Fichier : .agents/skills/laravel-crud/SKILL.md
+```
 
-markdown
+### 5.2 Créer une skill
+
+Fichier : `.agents/skills/laravel-crud/SKILL.md`
+
+```markdown
 ---
 name: laravel-crud
 description: Builds a full CRUD in Laravel. Use when asked to create a CRUD.
@@ -107,35 +113,36 @@ description: Builds a full CRUD in Laravel. Use when asked to create a CRUD.
 1. Create the migration and the model.
 2. Create the controller with validation.
 3. Add the routes and the Blade views.
-5.3 Demander à l’agent de les utiliser
-text
+```
+
+### 5.3 Demander à l’agent de les utiliser
+
+```text
 Read C:/agent-kit/rules/ and follow them.
 Use the laravel-crud skill for this task.
+```
+
 Adaptez le chemin à votre installation.
 Dans certains environnements, il peut être .agents/rules/ ou C:/agent-kit/rules/.
 
-6. MCP
+## 6. MCP
+
 MCP connecte l’agent à des outils externes : GitHub, Google Drive, bases de données, etc.
 
-6.1 Configuration
-Ouvrir le panneau de l’agent.
+### 6.1 Configuration
 
-Cliquer sur le menu "...".
+1. Ouvrir le panneau de l’agent.
+2. Cliquer sur le menu "...".
+3. Aller dans Manage MCP Servers.
+4. Cliquer sur View raw config.
+5. Ajouter un serveur dans mcpServers dans mcp_config.json.
+6. Sauvegarder.
+7. Cliquer sur Refresh.
+8. Redémarrer Antigravity si le serveur n’apparaît pas.
 
-Aller dans Manage MCP Servers.
+### 6.2 Exemple : serveur distant GitHub
 
-Cliquer sur View raw config.
-
-Ajouter un serveur dans mcpServers dans mcp_config.json.
-
-Sauvegarder.
-
-Cliquer sur Refresh.
-
-Redémarrer Antigravity si le serveur n’apparaît pas.
-
-## 6.2 Exemple : serveur distant GitHub
-json
+```json
 {
   "mcpServers": {
     "github": {
@@ -144,67 +151,54 @@ json
     }
   }
 }
+```
+
 Ne mettez jamais un vrai token en clair dans un fichier partagé.
 Utilisez des variables d’environnement ou un gestionnaire de secrets.
 
 ## 7. Bonnes pratiques
-Toujours demander un plan avant exécution.
 
-Définir un Scope précis pour éviter les modifications indésirables.
-
-Vérifier le résultat soi-même après chaque tâche.
-
-Ne jamais laisser l’agent toucher aux fichiers sensibles : .env, secrets, clés.
-
-Utiliser des Rules pour les conventions d’équipe.
-
-Utiliser des Skills pour les tâches répétitives.
-
-Découper les grosses tâches en petites étapes.
-
-Lire les diffs avant de valider.
-
-Sauvegarder ou commiter avant une grosse modification.
+- Toujours demander un plan avant exécution.
+- Définir un Scope précis pour éviter les modifications indésirables.
+- Vérifier le résultat soi-même après chaque tâche.
+- Ne jamais laisser l’agent toucher aux fichiers sensibles : .env, secrets, clés.
+- Utiliser des Rules pour les conventions d’équipe.
+- Utiliser des Skills pour les tâches répétitives.
+- Découper les grosses tâches en petites étapes.
+- Lire les diffs avant de valider.
+- Sauvegarder ou commiter avant une grosse modification.
 
 ## 8. Dépannage
-Problème	Solution possible
-Le serveur MCP n’apparaît pas	Vérifier le JSON, cliquer sur Refresh, redémarrer Antigravity.
-L’agent ne suit pas les Rules	Vérifier le chemin, demander explicitement de les lire.
-La Skill ne se déclenche pas	Vérifier name et description, demander explicitement la skill.
-L’agent modifie trop de fichiers	Réduire le Scope dans le prompt.
-Le token GitHub est refusé	Vérifier le token, les droits et le format Bearer.
-Le plan est trop vague	Demander un plan détaillé avec étapes et fichiers concernés.
+
+| Problème | Solution possible |
+|---|---|
+| Le serveur MCP n’apparaît pas | Vérifier le JSON, cliquer sur Refresh, redémarrer Antigravity. |
+| L’agent ne suit pas les Rules | Vérifier le chemin, demander explicitement de les lire. |
+| La Skill ne se déclenche pas | Vérifier name et description, demander explicitement la skill. |
+| L’agent modifie trop de fichiers | Réduire le Scope dans le prompt. |
+| Le token GitHub est refusé | Vérifier le token, les droits et le format Bearer. |
+| Le plan est trop vague | Demander un plan détaillé avec étapes et fichiers concernés. |
+
 ## 9. Glossaire
-Agent : programme IA qui agit sur le projet.
 
-Antigravity : environnement de développement assisté par agents.
-
-Done condition : critère de réussite d’une tâche.
-
-MCP : Model Context Protocol, connexion à des outils externes.
-
-Plan : liste d’étapes proposée avant exécution.
-
-Prompt : instruction envoyée à l’agent.
-
-Rule : règle permanente.
-
-Scope : périmètre autorisé.
-
-Skill : compétence réutilisable.
+- Agent : programme IA qui agit sur le projet.
+- Antigravity : environnement de développement assisté par agents.
+- Done condition : critère de réussite d’une tâche.
+- MCP : Model Context Protocol, connexion à des outils externes.
+- Plan : liste d’étapes proposée avant exécution.
+- Prompt : instruction envoyée à l’agent.
+- Rule : règle permanente.
+- Scope : périmètre autorisé.
+- Skill : compétence réutilisable.
 
 ## 10. Conclusion
+
 Antigravity permet de superviser des agents IA pour planifier, coder, exécuter et tester.
 Pour l’utiliser efficacement :
 
-Donnez un prompt clair avec Goal, Context, Scope et Done condition.
-
-Exigez toujours un plan avant exécution.
-
-Utilisez des Rules pour les consignes permanentes.
-
-Utilisez des Skills pour les tâches répétitives.
-
-Connectez des outils externes via MCP si nécessaire.
-
-Vérifiez toujours le résultat vous-même.
+- Donnez un prompt clair avec Goal, Context, Scope et Done condition.
+- Exigez toujours un plan avant exécution.
+- Utilisez des Rules pour les consignes permanentes.
+- Utilisez des Skills pour les tâches répétitives.
+- Connectez des outils externes via MCP si nécessaire.
+- Vérifiez toujours le résultat vous-même.
