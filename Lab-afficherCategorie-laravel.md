@@ -1,9 +1,18 @@
 ---
 marp: true
 paginate: true
+style: |
+  section { font-size: 24px; padding: 34px 56px; }
+  h1 { font-size: 1.5em; color: #c2410c; }
+  h2 { font-size: 1.3em; color: #c2410c; }
+  h3 { font-size: 1.1em; }
+  pre { font-size: 0.62em; }
+  table { font-size: 0.8em; }
+  blockquote { font-size: 0.85em; }
+  section.tiny { font-size: 19px; padding: 28px 50px; }
+  section.tiny pre { font-size: 0.66em; }
+  section.tiny table { font-size: 0.78em; }
 ---
-
-
 
 # Créer une application Laravel MVC avec MySQL
 
@@ -13,6 +22,8 @@ paginate: true
 > Présentation pédagogique pour débutants. Toutes les commandes sont prévues pour **Windows avec PowerShell**.
 
 ---
+
+<!-- _class: tiny -->
 
 ## Sommaire
 
@@ -39,9 +50,13 @@ paginate: true
 
 Nous allons construire une petite application nommée `gestion-articles`. Pour cette première étape, elle fait une seule chose : **lire les catégories enregistrées dans une base de données MySQL et les afficher dans une page web**.
 
+---
+
 ### Qu'est-ce que Laravel ?
 
 **Laravel** est un framework Web open source écrit en **PHP**. Un framework est une base de travail déjà organisée : il fournit une structure de projet et des outils pour les tâches courantes (routes, accès à la base de données, pages, validation, etc.).
+
+---
 
 ### L'architecture MVC
 
@@ -54,6 +69,8 @@ MVC sépare l'application en trois rôles :
 | **C** | Contrôleur (Controller) | Reçoit la demande, coordonne modèle et vue | `CategorieController` |
 
 À ces trois éléments s'ajoute la **route**, qui indique quel contrôleur appeler pour une adresse donnée.
+
+---
 
 ### Résultat visé
 
@@ -75,6 +92,8 @@ Une page `http://127.0.0.1:8000/categories` qui affiche la liste des catégories
 
 > Sous Windows, PHP et MySQL peuvent être installés séparément ou via un pack comme XAMPP ou WAMP. Ce document ne dépend d'aucun pack en particulier.
 
+---
+
 ### Vérifier les installations
 
 Ouvrez PowerShell et exécutez :
@@ -91,11 +110,15 @@ Ces commandes affichent les versions installées. Si une commande n'est pas reco
 
 > **Versions :** Laravel exige une version minimale de PHP qui change selon la version du framework. Vérifiez la page « Installation » de la [documentation officielle](https://laravel.com/docs) pour connaître la version requise par votre version de Laravel.
 
+---
+
 ### Ouvrir le terminal dans Visual Studio Code
 
 1. Ouvrez Visual Studio Code.
 2. Menu **Terminal → Nouveau terminal**, ou raccourci `` Ctrl + ` ``.
 3. Vérifiez que le terminal indique **powershell** (menu déroulant à droite du terminal).
+
+---
 
 ### Résultat attendu
 
@@ -117,6 +140,8 @@ cd gestion-articles
 code .
 ```
 
+---
+
 ### Explication de chaque commande
 
 | Commande | Explication |
@@ -124,6 +149,8 @@ code .
 | `composer create-project laravel/laravel gestion-articles` | Télécharge Laravel et crée le dossier `gestion-articles` avec toutes les dépendances |
 | `cd gestion-articles` | Se déplace dans le dossier du projet |
 | `code .` | Ouvre le dossier dans Visual Studio Code (si la commande `code` est disponible) |
+
+---
 
 ### Structure principale des dossiers
 
@@ -144,11 +171,15 @@ gestion-articles/
 └── artisan                   ← l'outil en ligne de commande de Laravel
 ```
 
+---
+
 ### Résultat attendu
 
 Le dossier `gestion-articles` existe et contient les dossiers ci-dessus.
 
 ---
+
+<!-- _class: tiny -->
 
 ## 4. Configuration de MySQL
 
@@ -177,6 +208,8 @@ La base `gestion_articles` est créée vide. Laravel y créera les tables à l'�
 
 > **Attention :** `root` est un exemple courant, mais **chaque ordinateur peut avoir un utilisateur et un mot de passe différents**. Utilisez les vôtres.
 
+---
+
 ### 4.2 Configurer le fichier `.env`
 
 Ouvrez le fichier `.env` à la racine du projet et repérez les lignes `DB_...`. Modifiez-les ainsi :
@@ -192,6 +225,8 @@ DB_USERNAME=root
 DB_PASSWORD=votre_mot_de_passe
 ```
 
+---
+
 | Variable | Signification |
 |---|---|
 | `DB_CONNECTION` | Type de base de données (`mysql`) |
@@ -204,6 +239,8 @@ DB_PASSWORD=votre_mot_de_passe
 > **Important :** `votre_mot_de_passe` est un texte d'exemple. Remplacez-le par votre vrai mot de passe, **sans jamais le partager**. Si votre utilisateur n'a pas de mot de passe, laissez la valeur vide : `DB_PASSWORD=`.
 
 > **Versions :** selon la version de Laravel, le fichier `.env` peut être configuré par défaut pour **SQLite**, et certaines lignes `DB_...` peuvent être commentées avec `#`. Dans ce cas, supprimez le `#` devant les lignes utilisées et vérifiez que `DB_CONNECTION=mysql`.
+
+---
 
 ### Résultat attendu
 
@@ -228,6 +265,10 @@ php artisan make:model Categorie -m
 | `-m` | Crée aussi un fichier de **migration** dans `database/migrations/` |
 
 Une **migration** est un fichier PHP qui décrit une table. Elle permet de créer la base de la même façon sur tous les ordinateurs.
+
+---
+
+<!-- _class: tiny -->
 
 ### Code de la migration
 
@@ -261,6 +302,8 @@ return new class extends Migration
 };
 ```
 
+---
+
 | Ligne | Colonne créée |
 |---|---|
 | `$table->id()` | `id` : identifiant automatique |
@@ -269,6 +312,8 @@ return new class extends Migration
 | `$table->timestamps()` | `created_at` et `updated_at` |
 
 La méthode `up()` crée la table, `down()` la supprime lors d'un retour en arrière.
+
+---
 
 ### Exécuter les migrations
 
@@ -280,6 +325,8 @@ php artisan migrate
 
 Cette commande crée la table `categories`, ainsi que quelques tables par défaut de Laravel (utilisateurs, cache, etc.). C'est normal.
 
+---
+
 ### Et si la migration a déjà été exécutée avant l'ajout de `description` ?
 
 Laravel mémorise les migrations déjà exécutées : relancer `php artisan migrate` **ne modifiera pas** une table existante. Deux solutions :
@@ -290,11 +337,17 @@ Laravel mémorise les migrations déjà exécutées : relancer `php artisan migr
 php artisan migrate:fresh
 ```
 
+---
+
 **Solution B : conserver les données.** Créez une migration qui ajoute la colonne :
 
 ```powershell
 php artisan make:migration add_description_to_categories_table --table=categories
 ```
+
+---
+
+<!-- _class: tiny -->
 
 Puis écrivez dans le nouveau fichier :
 
@@ -329,11 +382,15 @@ Puis exécutez :
 php artisan migrate
 ```
 
+---
+
 ### Résultat attendu
 
 Le terminal affiche les migrations exécutées avec la mention `DONE`. Dans MySQL, la table `categories` existe avec les colonnes `id`, `nom`, `description`, `created_at` et `updated_at`.
 
 ---
+
+<!-- _class: tiny -->
 
 ## 6. Création du modèle `Categorie`
 
@@ -365,6 +422,8 @@ class Categorie extends Model
 - **`$table = 'categories'`** indique explicitement le nom de la table. Le nom de classe est en français (`Categorie`) alors que Laravel suppose des noms anglais : l'écrire évite toute ambiguïté.
 - **`$fillable`** liste les champs qui peuvent être enregistrés en une seule fois (par exemple avec `create()`). C'est une protection contre l'enregistrement de champs non prévus.
 
+---
+
 ### Résultat attendu
 
 Le fichier est enregistré. Aucune page n'est encore visible : le modèle seul n'affiche rien.
@@ -382,6 +441,10 @@ php artisan make:controller CategorieController
 ```
 
 Cette commande crée le fichier `app/Http/Controllers/CategorieController.php`.
+
+---
+
+<!-- _class: tiny -->
 
 ### Code complet
 
@@ -405,6 +468,8 @@ class CategorieController extends Controller
 }
 ```
 
+---
+
 ### Explications
 
 | Élément | Rôle |
@@ -415,11 +480,15 @@ class CategorieController extends Controller
 | `compact('categories')` | Crée le tableau `['categories' => $categories]` pour transmettre la variable à la vue |
 | `view('categories', ...)` | Charge le fichier `resources/views/categories.blade.php` et lui envoie les données |
 
+---
+
 ### Résultat attendu
 
 Le contrôleur est enregistré. Il ne sera appelé qu'une fois la route créée.
 
 ---
+
+<!-- _class: tiny -->
 
 ## 8. Création de la route
 
@@ -450,6 +519,8 @@ Pour vérifier que la route est bien enregistrée :
 php artisan route:list
 ```
 
+---
+
 ### Résultat attendu
 
 La liste des routes contient une ligne `GET|HEAD  categories` associée à `CategorieController@index`.
@@ -469,6 +540,10 @@ New-Item resources/views/categories.blade.php -ItemType File
 ```
 
 Vous pouvez aussi créer le fichier avec VS Code (clic droit sur `resources/views` → **Nouveau fichier**). Le nom doit se terminer par `.blade.php`.
+
+---
+
+<!-- _class: tiny -->
 
 ### Code HTML complet
 
@@ -507,6 +582,8 @@ Vous pouvez aussi créer le fichier avec VS Code (clic droit sur `resources/view
 </html>
 ```
 
+---
+
 ### Expressions Blade utilisées
 
 | Expression | Explication |
@@ -516,6 +593,8 @@ Vous pouvez aussi créer le fichier avec VS Code (clic droit sur `resources/view
 | `@endforelse` | Fin de la boucle |
 | `{{ $categorie->nom }}` | Affiche la valeur du champ `nom`, en protégeant le HTML (échappement automatique) |
 | `@if ... @endif` | Affiche la description seulement si elle existe |
+
+---
 
 ### Résultat attendu
 
@@ -535,6 +614,8 @@ php artisan serve
 
 Cette commande lance un serveur local de développement. Laissez ce terminal ouvert tant que vous testez. Pour l'arrêter : `Ctrl + C`.
 
+---
+
 ### Ouvrir la page
 
 Dans le navigateur, allez à :
@@ -543,9 +624,13 @@ Dans le navigateur, allez à :
 http://127.0.0.1:8000/categories
 ```
 
+---
+
 ### Résultat attendu (sans données)
 
 Un titre « Liste des catégories » et le message « Aucune catégorie n'existe pour le moment. »
+
+---
 
 ### Ajouter des données de démonstration
 
@@ -556,6 +641,10 @@ Pour que tous les participants voient les mêmes catégories, on utilise un **se
 ```powershell
 php artisan make:seeder CategorieSeeder
 ```
+
+---
+
+<!-- _class: tiny -->
 
 **2. Écrire son contenu dans `database/seeders/CategorieSeeder.php`**
 
@@ -586,6 +675,8 @@ class CategorieSeeder extends Seeder
 
 `updateOrCreate` évite les doublons : on peut relancer le seeder sans dupliquer les catégories.
 
+---
+
 **3. Exécuter le seeder**
 
 ```powershell
@@ -593,6 +684,8 @@ php artisan db:seed --class=CategorieSeeder
 ```
 
 **4. Rafraîchir la page** `http://127.0.0.1:8000/categories`.
+
+---
 
 ### Résultat attendu (avec données)
 
@@ -620,6 +713,8 @@ flowchart LR
     F -->|8. page HTML| A
 ```
 
+---
+
 Si votre lecteur Markdown n'affiche pas les schémas Mermaid, voici la version texte :
 
 ```text
@@ -627,6 +722,8 @@ Navigateur → Route → Contrôleur → Modèle → MySQL
                           │
                           └→ Vue (Blade) → page HTML → Navigateur
 ```
+
+---
 
 ### Explication simple de chaque élément
 
@@ -638,6 +735,8 @@ Navigateur → Route → Contrôleur → Modèle → MySQL
 | **Modèle** | Parle à la base de données à la place du contrôleur |
 | **MySQL** | Stocke les catégories |
 | **Vue** | Transforme les données en page HTML lisible |
+
+---
 
 ### Pourquoi séparer ainsi ?
 
@@ -652,6 +751,8 @@ Chaque partie a un seul rôle : on peut modifier l'affichage sans toucher à l'a
 Le fichier `.env` contient vos identifiants MySQL. Laravel fournit un fichier `.gitignore` qui **exclut déjà `.env`** : il ne sera pas envoyé sur GitHub. Un fichier `.env.example` (sans secrets) sert de modèle pour les autres.
 
 > Vérifiez avec `git status` que `.env` n'apparaît pas dans les fichiers à envoyer.
+
+---
 
 ### Envoyer le projet (personne qui partage)
 
@@ -668,6 +769,8 @@ git push -u origin main
 
 Remplacez l'URL par celle de votre dépôt.
 
+---
+
 ### Récupérer et lancer le projet (chaque participant)
 
 **Prérequis :** PHP, Composer, MySQL et Git correctement installés.
@@ -679,6 +782,8 @@ composer install
 Copy-Item .env.example .env
 php artisan key:generate
 ```
+
+---
 
 Ensuite :
 
@@ -694,6 +799,8 @@ php artisan serve
 
 4. Ouvrez `http://127.0.0.1:8000/categories`.
 
+---
+
 ### Résultat attendu
 
 Chaque participant voit les mêmes trois catégories dans son navigateur.
@@ -705,6 +812,8 @@ Chaque participant voit les mêmes trois catégories dans son navigateur.
 | `php artisan key:generate` | Génère la clé de chiffrement propre à l'application |
 
 ---
+
+<!-- _class: tiny -->
 
 ## 13. Problèmes fréquents
 
@@ -734,6 +843,8 @@ Lisez toujours le **message d'erreur complet** : il indique généralement le fi
 - Ajout de données de démonstration avec un seeder.
 - Préparation du partage du projet sur GitHub, sans le fichier `.env`.
 
+---
+
 ### Rôle de chaque composant MVC
 
 | Composant | Rôle |
@@ -742,6 +853,8 @@ Lisez toujours le **message d'erreur complet** : il indique généralement le fi
 | **Contrôleur** | Coordonne la demande |
 | **Modèle** | Accède aux données |
 | **Vue** | Affiche le résultat |
+
+---
 
 ### Amélioration future
 
