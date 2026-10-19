@@ -1,22 +1,53 @@
-# Diapositive 1 — Qu’est-ce que l’architecture MVC ?
+---
+marp: true
+theme: default
+paginate: true
+style: |
+  section {
+    font-size: 26px;
+    padding: 40px 60px;
+  }
+  h1 {
+    color: #c2410c;
+    font-size: 1.5em;
+  }
+  h2 {
+    color: #c2410c;
+    font-size: 1.3em;
+  }
+  code {
+    font-size: 0.85em;
+  }
+  pre {
+    font-size: 0.7em;
+  }
+  table {
+    font-size: 0.85em;
+  }
+  section.small pre {
+    font-size: 0.6em;
+  }
+---
 
-**MVC** signifie **Model–View–Controller** (Modèle–Vue–Contrôleur). C’est une façon de répartir le code d’une application en trois rôles complémentaires.
+# Qu'est-ce que l'architecture MVC ?
 
-- **Model (Modèle) :** représente les données et leur accès.
-- **View (Vue) :** présente les informations à l’utilisateur.
-- **Controller (Contrôleur) :** traite la demande et coordonne le modèle et la vue.
+**MVC** signifie **Model–View–Controller** (Modèle–Vue–Contrôleur) : une façon de répartir le code en trois rôles.
 
-Cette séparation évite de mélanger l’accès aux données, l’affichage et le traitement des demandes. Le code devient plus lisible et plus facile à faire évoluer.
+- **Model (Modèle) :** les données et leur accès
+- **View (Vue) :** ce que voit l'utilisateur
+- **Controller (Contrôleur) :** traite la demande et coordonne les deux
 
-## Notes pour l’oral
+Résultat : un code plus lisible et plus facile à faire évoluer.
 
-« MVC est une manière d’organiser le code. Au lieu de mettre toutes les responsabilités au même endroit, on sépare les données, l’affichage et le traitement des demandes. Nous allons suivre le même exemple d’articles pour voir le rôle de chaque partie. »
+<!--
+MVC est une manière d'organiser le code. Au lieu de mettre toutes les responsabilités au même endroit, on sépare les données, l'affichage et le traitement des demandes. Nous allons suivre le même exemple d'articles pour voir le rôle de chaque partie.
+-->
 
 ---
 
-## Diapositive 2 — Le Model (Modèle)
+## Le Model (Modèle)
 
-Le modèle représente les données manipulées par l’application. Avec Laravel, un modèle Eloquent facilite la lecture et la modification des enregistrements dans la base de données.
+Avec Laravel, un modèle **Eloquent** facilite la lecture et la modification des données.
 
 **`app/Models/Article.php`**
 
@@ -32,23 +63,24 @@ class Article extends Model
 }
 ```
 
-- `Article` est le modèle d’un article.
-- Par convention, Laravel associe ce modèle à la table `articles`.
-- Eloquent permet ensuite d’effectuer des opérations sur les enregistrements, par exemple récupérer tous les articles avec `Article::all()`.
+- Laravel associe ce modèle à la table `articles`
+- Exemple : `Article::all()` récupère tous les articles
 
-## Notes pour l’oral
-
-« Le modèle décrit ici l’objet Article. Laravel s’appuie sur Eloquent pour relier ce modèle aux données stockées dans la table articles. Le contrôleur pourra lui demander les articles, sans avoir à écrire lui-même toute la requête SQL. »
+<!--
+Le modèle décrit ici l'objet Article. Laravel s'appuie sur Eloquent pour relier ce modèle aux données stockées dans la table articles. Le contrôleur pourra lui demander les articles, sans avoir à écrire lui-même toute la requête SQL.
+-->
 
 ---
 
-## Diapositive 3 — La View (Vue)
+<!-- _class: small -->
 
-La vue prépare ce que l’utilisateur voit. Dans Laravel, les vues Blade se trouvent dans `resources/views` et peuvent afficher les données transmises par le contrôleur.
+## La View (Vue)
+
+Les vues Blade se trouvent dans `resources/views`.
 
 **`resources/views/articles.blade.php`**
 
-```blade
+```html
 <h1>Liste des articles</h1>
 
 <ul>
@@ -63,20 +95,20 @@ La vue prépare ce que l’utilisateur voit. Dans Laravel, les vues Blade se tro
 </ul>
 ```
 
-- `@forelse` parcourt la liste et prévoit le cas où elle est vide.
-- `{{ $article->title }}` et `{{ $article->content }}` insèrent les valeurs dans le HTML. Blade échappe ces valeurs par défaut avant leur affichage.
+- `@forelse` parcourt la liste et gère le cas vide
+- `{{ ... }}` affiche une valeur (échappée par défaut)
 
-## Notes pour l’oral
-
-« La vue s’occupe de l’affichage, pas de la recherche en base de données. Ici, Blade parcourt les articles reçus et construit une liste HTML. Les doubles accolades affichent le titre et le contenu en échappant les caractères spéciaux. »
+<!--
+La vue s'occupe de l'affichage, pas de la recherche en base de données. Ici, Blade parcourt les articles reçus et construit une liste HTML. Les doubles accolades affichent le titre et le contenu en échappant les caractères spéciaux.
+-->
 
 ---
 
-## Diapositive 4 — Le Controller (Contrôleur)
+<!-- _class: small -->
 
-Le contrôleur reçoit une action associée à une route, demande les données nécessaires au modèle, puis choisit la vue et lui transmet ces données.
+## Le Controller (Contrôleur)
 
-**Route dans `routes/web.php`**
+**Route** (`routes/web.php`)
 
 ```php
 use App\Http\Controllers\ArticleController;
@@ -88,13 +120,6 @@ Route::get('/articles', [ArticleController::class, 'index']);
 **`app/Http/Controllers/ArticleController.php`**
 
 ```php
-<?php
-
-namespace App\Http\Controllers;
-
-use App\Models\Article;
-use Illuminate\View\View;
-
 class ArticleController extends Controller
 {
     public function index(): View
@@ -106,46 +131,38 @@ class ArticleController extends Controller
 }
 ```
 
-1. La route relie `GET /articles` à la méthode `index`.
-2. `Article::all()` demande au modèle Eloquent de récupérer les articles.
-3. `view('articles', ...)` choisit `articles.blade.php` et lui transmet la liste sous le nom `articles`.
+1. La route relie `GET /articles` à `index`
+2. `Article::all()` demande les articles au modèle
+3. `view(...)` envoie la liste à `articles.blade.php`
 
-## Notes pour l’oral
-
-« Quand le navigateur demande `/articles`, la route appelle `index`. Le contrôleur demande au modèle tous les articles, puis les transmet à la vue Blade. Le contrôleur coordonne les deux autres composants, mais il ne construit pas lui-même le HTML. »
+<!--
+Quand le navigateur demande /articles, la route appelle index. Le contrôleur demande au modèle tous les articles, puis les transmet à la vue Blade. Le contrôleur coordonne les deux autres composants, mais il ne construit pas lui-même le HTML.
+-->
 
 ---
 
-## Diapositive 5 — Fonctionnement global de MVC
-
-### Parcours d’une requête
-
-1. L’utilisateur demande la liste des articles en ouvrant `/articles`.
-2. La route Laravel dirige la demande vers le contrôleur.
-3. Le contrôleur appelle le modèle, qui récupère les données dans la base.
-4. Le contrôleur transmet les articles à la vue.
-5. La vue produit le HTML affiché à l’utilisateur.
+## Fonctionnement global de MVC
 
 ```text
-Utilisateur
-    │ GET /articles
-    ▼
-Route ──► Controller ──► Model ──► Base de données
-           ▲              ◄────────── résultats
-           │ articles
-           └── transmet les articles ──► View (Blade) ── HTML ──► Utilisateur
+Utilisateur ── GET /articles ──► Route ──► Controller
+                                              │  ▲
+                                              ▼  │
+                                        Model ⇄ Base de données
+                                              │
+                                              ▼
+Utilisateur ◄────── HTML ◄────────────── View (Blade)
 ```
 
-| Composant | Rôle dans l’exemple |
+| Composant | Rôle dans l'exemple |
 | --- | --- |
-| **Model** | Accède aux données des articles avec Eloquent. |
-| **View** | Affiche les articles dans une page HTML avec Blade. |
-| **Controller** | Coordonne la requête, le modèle et la vue. |
+| **Model** | Accède aux données avec Eloquent |
+| **View** | Affiche les articles avec Blade |
+| **Controller** | Coordonne la requête, le modèle et la vue |
 
-**Conclusion :** MVC aide à séparer les responsabilités. Cette organisation rend l’application plus claire et facilite la modification ou la réutilisation de chaque partie.
+**Conclusion :** MVC sépare les responsabilités et rend l'application plus claire à faire évoluer.
 
-**Sources officielles :** [Eloquent](https://laravel.com/docs/13.x/eloquent), [Vues et Blade](https://laravel.com/docs/13.x/views), [Contrôleurs](https://laravel.com/docs/13.x/controllers) et [Cycle de vie d’une requête](https://laravel.com/docs/13.x/lifecycle).
+**Sources :** [laravel.com/docs](https://laravel.com/docs) (Eloquent, Vues, Contrôleurs)
 
-## Notes pour l’oral
-
-« Pour résumer, la route oriente la demande, le contrôleur coordonne le travail, le modèle accède aux données et la vue les affiche. En séparant ces rôles, MVC aide l’équipe à comprendre et à faire évoluer l’application plus facilement. »
+<!--
+Pour résumer, la route oriente la demande, le contrôleur coordonne le travail, le modèle accède aux données et la vue les affiche. En séparant ces rôles, MVC aide l'équipe à comprendre et à faire évoluer l'application plus facilement.
+-->
