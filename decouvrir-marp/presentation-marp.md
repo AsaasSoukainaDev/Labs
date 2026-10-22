@@ -3,97 +3,112 @@ marp: true
 theme: default
 paginate: true
 size: 16:9
-header: "Découvrir Marp"
-footer: "Atelier de présentation"
+style: |
+  section {
+    background: #fbfaf6;
+    border-top: 8px solid #d2704e;
+    color: #183b39;
+    font-family: "Aptos", "Segoe UI", sans-serif;
+  }
+
+  section h1,
+  section h2 {
+    color: #a94732;
+  }
+
+  section code,
+  section pre {
+    background: #e9efeb;
+    color: #183b39;
+  }
+
+  section.light {
+    background: #eaf2ee;
+    color: #183b39;
+  }
+
+  section.light h1,
+  section.light h2 {
+    color: #a94732;
+  }
+
+  section.light code,
+  section.light pre {
+    background: #dfeae5;
+    color: #183b39;
+  }
+
+  section.lead {
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    background: #eaf2ee;
+  }
+
+  section strong {
+    color: #925c16;
+  }
 ---
-
-<style>
-section {
-  font-family: "Aptos", "Segoe UI", sans-serif;
-  color: #263746;
-  background: #f7fafc;
-}
-
-section h1,
-section h2 {
-  color: #174a6e;
-}
-
-section.lead {
-  justify-content: center;
-  text-align: center;
-  background: linear-gradient(135deg, #eaf5fb, #f8f6f0);
-}
-
-section.lead h1 {
-  color: #123b58;
-  font-size: 2.2em;
-}
-</style>
 
 <!-- _class: lead -->
 
 # Découvrir Marp
 
-- Présentations Markdown
+---
+
+<!-- _class: light -->
+
+## Lab Plan
+
+1. Introduction
+2. Problems Encountered
+3. Solutions Implemented
 
 ---
 
-# Sommaire
+## Introduction
 
-- Définition et usages
-- Avantages
-- Installation VS Code, CLI
-- Syntaxe, directives, thèmes
-- Prévisualisation, export, bonnes pratiques
+Marp transforme du **Markdown** en diapositives de présentation.
 
----
-
-# Qu’est-ce que Marp ?
-
-- Écosystème de présentations Markdown
-- Marp for VS Code : édition, aperçu
-- Marp CLI : génération multi-format
-- Marpit : moteur de rendu HTML
-- Source texte, versionnable avec Git
+- Objectif : écrire, prévisualiser et exporter un diaporama.
+- Outils : Marp for VS Code et Marp CLI.
+- Notions : front matter, séparateurs, directives et thèmes.
 
 ---
 
-# Pourquoi utiliser Marp ?
+<!-- _class: light -->
 
-- Rédaction rapide
-- Révisions versionnées avec Git
-- Thèmes et CSS réutilisables
-- Exports multiples, source unique
-- Automatisation via CLI
+## Problems Encountered
 
----
+Aucun incident bloquant n’a été signalé pour ce lab.
 
-# Installer Marp : VS Code
+Points de vigilance fréquents :
 
-- Installer l’extension Marp for VS Code
-- Ouvrir un fichier `.md`
-- Lancer l’aperçu Marp intégré
-- Prérequis : Visual Studio Code
+- L’aperçu ne s’active pas si `marp: true` manque.
+- Un `---` mal placé peut créer une diapositive inattendue.
+- L’export CLI dépend de Node.js et de Marp CLI.
 
 ---
 
-# Installer Marp : CLI et Docker
+## Solutions Implemented
 
-- Prérequis : Node.js ou Docker Desktop
+- Installer l’extension **Marp for VS Code** pour écrire et prévisualiser.
+- Ajouter `marp: true` au front matter; séparer les pages par `---`.
+- Installer Node.js et Marp CLI pour exporter depuis la ligne de commande.
 
-````bash
+```bash
 npm install -g @marp-team/marp-cli
 marp --version
-docker run --rm marpteam/marp-cli --version
-````
+```
 
 ---
 
-# Structure d’un fichier Marp
+<!-- _class: light -->
 
-- Front matter : configuration globale
-- `---` : nouvelle diapositive
+## Structure d’un fichier Marp
+
+Le front matter configure le diaporama. Chaque séparateur hors code ouvre
+une nouvelle diapositive.
 
 ````markdown
 ---
@@ -103,110 +118,94 @@ paginate: true
 size: 16:9
 ---
 
-# Titre
-- Message clé
-````
+# Première diapositive
+Une idée principale.
 
 ---
-
-# Directives Marp
-
-- Globales : `theme`, `paginate`
-- Locales : `_class`, `_backgroundColor`, `_color`
-
-````markdown
 <!-- _class: lead -->
-# Titre de la diapositive
+## Titre mis en évidence
 ````
+
+Une directive locale s’applique à la diapositive suivante. Les options
+incluent `_class`, `_backgroundColor` et `_color`.
 
 ---
 
-# Thèmes et personnalisation
+## Styles, thèmes et images
 
-- Thèmes : `default`, `gaia`, `uncover`
-- CSS global : balise `<style>`
-- Style des diapositives : sélecteur `section`
+- Thèmes intégrés : `default`, `gaia`, `uncover`.
+- Le CSS personnalise couleurs et typographie.
+- Les directives d’image contrôlent le placement.
 
-````html
-<style>
-section { color: #174a6e; }
-</style>
-````
-
----
-
-# Images et arrière-plans
-
-- Image : `![Alt](images/a.png)`
+```css
+section {
+  background: #fbfaf6;
+  color: #183b39;
+}
+```
 
 ````markdown
-![bg right:40%](images/a.png)
+![Schéma du projet](images/schema.png)
+![bg right:40%](images/schema.png)
 ````
 
-- Options : `cover`, `contain`, `right`
-- Chemins relatifs au Markdown
-- Texte alternatif descriptif
+Utiliser un texte alternatif et un chemin relatif. `bg`, `right`, `cover` et
+`contain` règlent l’arrière-plan.
 
 ---
 
-# Prévisualiser dans VS Code
+<!-- _class: light -->
 
-- Palette : `Ctrl+Shift+P`
-- Aperçu : `Marp: Open Preview`
-- Aperçu latéral : `Marp: Open Preview to the Side`
+## Prévisualiser et exporter
 
----
+1. Ouvrir la palette avec `Ctrl + Shift + P`.
+2. Choisir `Marp: Open Preview` ou `Marp: Open Preview to the Side`.
+3. Vérifier le texte, les images et le nombre de pages.
 
-# Exporter : CLI et VS Code
+Pour exporter avec Marp CLI :
 
-- VS Code : `Ctrl+Shift+P` → `Marp: Export`
-
-````bash
+```bash
 marp presentation.md --html
 marp presentation.md --pdf
 marp presentation.md --pptx
-marp presentation.md --images png
-````
+```
+
+L’export PDF ou PowerPoint requiert les dépendances correspondantes.
 
 ---
 
-# Bonnes pratiques
+## Mise en pratique
 
-- Une idée principale par slide
-- Titres informatifs, listes concises
-- Contraste élevé, typographie lisible
-- Textes alternatifs, chemins vérifiés
-- Aperçu avant export et partage
-
----
-
-# Marp et les outils de présentation
-
-| Critère | Marp | Slides |
-|---|---|---|
-| Création | Markdown | Interface |
-| Versions | Git | Cloud |
-| Export | CLI, multi-format | Intégré |
-| Mise en page | CSS | Visuelle |
-
----
-
-# Mémo Marp
+Créer `presentation.md`, ajouter le front matter, puis rédiger deux pages :
 
 ````markdown
 ---
 marp: true
-# Slide
-````
+theme: default
+paginate: true
+---
 
-- `---` : nouvelle slide
-- `_class` : style local
-- `--pdf` : export
+# Objectif
+Présenter une idée.
 
 ---
 
-# Ressources
+# Résultat
+Prévisualiser les deux diapositives.
+````
+
+---
+
+## En bref
+
+Marp associe la simplicité de Markdown à des présentations exportables.
+
+- Écrire le contenu dans un fichier `.md`.
+- Prévisualiser avec Marp for VS Code.
+- Exporter avec VS Code ou Marp CLI.
+
+- Une idée par page; vérifier le rendu avant le partage.
+- Utiliser des images avec texte alternatif et chemins vérifiés.
 
 - [Marp](https://marp.app)
-- [Marp CLI](https://github.com/marp-team/marp-cli)
 - [Marp for VS Code](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
