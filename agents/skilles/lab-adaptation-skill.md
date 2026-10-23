@@ -21,8 +21,8 @@ Every lab presentation **must be in Marp format** (`marp: true`) and follow this
   ## Lab Plan
 
   1. Introduction
-  2. Problems Encountered
-  3. Solutions Implemented
+  2. Problems 
+  3. Solutions 
   ```
 
 ### Slide 3: Introduction
