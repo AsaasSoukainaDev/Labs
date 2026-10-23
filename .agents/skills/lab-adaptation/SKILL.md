@@ -1,3 +1,8 @@
+---
+name: lab-adaptation
+description: Adapt technical labs into structured Marp presentations with practical examples and accurate guidance.
+---
+
 # Lab Adaptation Skill — Standard Marp Presentation Structure
 
 ## Purpose
