@@ -18,5 +18,6 @@ All labs are linked from the [Labs homepage](https://asaassoukainadev.github.io/
 - [Préparer un lab technique autour d’un blog](https://asaassoukainadev.github.io/Labs/lab-preparer-lab-blog/index.html)
 - [Tester la page des catégories avec Laravel](https://asaassoukainadev.github.io/Labs/lab-tests-categories-laravel/index.html)
 - [Évaluer Alpine.js pour un menu de blog](https://asaassoukainadev.github.io/Labs/lab-alpine-js/index.html)
+- [Méthodologie et planification d’un lab](https://asaassoukainadev.github.io/Labs/lab-preparer-lab/index.html)
 
 Whenever a lab is added to the homepage, add its direct URL to this list.

@@ -3,100 +3,159 @@ marp: true
 theme: default
 size: 16:9
 paginate: true
+style: |
+	section {
+		background: #183b39;
+		color: #f6f7f2;
+		font-family: "Inter", system-ui, sans-serif;
+		font-size: 25px;
+		padding: 54px 70px;
+	}
+
+	h1,
+	h2 {
+		color: #ffd08a;
+		font-weight: 700;
+	}
+
+	section.light {
+		background: #ffffff;
+		color: #1f2937;
+	}
+
+	section.light h1,
+	section.light h2 {
+		color: #2563eb;
+	}
+
+	code {
+		background: #f3f4f6;
+		color: #1f2937;
+	}
+
+	pre {
+		background: #f9fafb;
+		border: 1px solid #e5e7eb;
+	}
 ---
 
-# Lab 03 — Planification d'un Lab
+<!-- _class: lead -->
 
-## Méthodologie et architecture d'apprentissage SoliCode
+# Méthodologie et planification d’un lab
 
 ---
 
-## Plan de la présentation
+<!-- _class: light -->
 
-- Introduction & Définition
-- Problématique & Solution
-- Outils & Concepts clés
-- Première pratique : Cadrage
-- Quick Start : Planification complète
+## Lab Plan
+
+1. Introduction
+2. Stack
+3. Définition
+4. Problématique
+5. Solution
+6. Pratique
 
 ---
 
 ## Introduction
 
-Cette présentation expose la méthode standard pour concevoir un lab d'apprentissage autonome. Nous explorerons son organisation en quatre temps et ses six fichiers clés.
+Un plan commun aide chaque étudiant à préparer un lab clair et réalisable.
+
+- Type : première pratique méthodologique.
+- Objectif : transformer un besoin en parcours testable.
+- Fil conducteur : un besoin concret de blog.
 
 ---
 
-## Mini-définition
+<!-- _class: light -->
 
-Un lab pédagogique est un parcours guidé orienté action, reliant théorie, validation minimale et projet concret.
+## Stack
+
+- **Parcours :** définition → outils → première pratique → Quick Start.
+- **Choix :** une technologie adaptée au besoin.
+- **Exemples :** Laravel, Markdown ou Alpine.js.
+
+Marp for VS Code permet de prévisualiser le support.
+
+---
+
+## Définition
+
+Un lab est un parcours guidé qui transforme un besoin en pratique vérifiable.
+
+- **Stack :** technologies utilisées pour réaliser une fonction.
+- **Problème :** besoin précis à résoudre.
+- **Solution :** étapes et choix techniques proposés.
 
 ---
 
 ## Problématique
 
-- Documentations techniques trop denses
-- Absence d'étapes de validation intermédiaire
-- Perte de temps et abandon fréquent
+Chaque étudiant risque de commencer sans plan réutilisable pour cadrer son lab.
+
+- Le besoin reste trop général.
+- La technologie est choisie sans justification.
+- Les étapes et critères de réussite manquent.
+
+**Attendu :** un plan que chaque étudiant peut suivre et adapter.
 
 ---
 
-## Solution apportée
+<!-- _class: light -->
 
-- Parcours balisé en 4 étapes progressives
-- Séparation stricte entre théorie, pratique et slides
-- Autonomie complète pour l'apprenant
+## Solution
 
----
+1. Créer un dossier et les six fichiers standard.
+2. Décrire le besoin et le résultat attendu.
+3. Choisir une stack et ordonner les tâches.
+4. Ajouter la pratique, les tests et livrables.
 
-## Objectifs du lab
-
-- **Maîtriser** la structure en 6 fichiers
-- **Appliquer** la progression en 4 étapes
-- **Concevoir** une présentation Marp épurée
+La technologie dépend du besoin, pas d’un choix universel.
 
 ---
 
-## Concepts clés et outils
+<!-- _class: light -->
 
-- **Ordre d'or** : Définition → Outils → Hello → Quick Start
-- **6 Fichiers** : README, intro, def, practical, slides, prompt
-- **Outils** : Éditeur Markdown et extension Marp
+## Pratique — outils et vérification
 
----
+1. Ouvrir le fichier Marp dans VS Code.
+2. Installer l’extension **Marp for VS Code**.
+3. Lancer `Marp: Open Preview`.
 
-## Installation — étapes
-
-1. Ouvrir l'éditeur de code (VS Code / IDE)
-2. Installer l'extension `Marp for VS Code`
-3. Vérifier la présence du dossier racine `labs/`
+**Vérification :** les diapositives s’affichent dans l’ordre.
 
 ---
 
-## Première pratique — Cadrage express
+## Pratique — cadrage
 
-1. Définir le titre du lab cible
-2. Associer les 4 étapes en 4 lignes
-3. Vérifier le rendu dans la prévisualisation Marp
+**Besoin :** les lecteurs ne trouvent pas les articles par thème.
 
----
-
-## Quick Start — 1. Dossier et index
-
-```bash
-# Chemin : labs/
-mkdir labs/lab-sujet-nom
-```
-
-- Créer un dossier unique en minuscules
-- Inscrire le lab dans `labs/README.md`
-
----
-
-## Quick Start — 2. Les 6 fichiers clés
+Compléter les quatre rubriques :
 
 ```text
-Chemin : labs/lab-sujet-nom/
+Contexte | Problème | Technologie | Résultat attendu
+```
+
+---
+
+<!-- _class: light -->
+
+## Pratique — plan final du lab
+
+| Étape | Livrable attendu |
+| :--- | :--- |
+| Définition | Besoin et vocabulaire |
+| Outils | Environnement prêt |
+| Hello World | Première preuve |
+| Quick Start | Mini-réalisation |
+
+---
+
+## Pratique — Quick Start : dossier
+
+```text
+lab-sujet-nom/
 ├── README.md
 ├── 1-introduction.md
 ├── 2-definition.md
@@ -105,12 +164,32 @@ Chemin : labs/lab-sujet-nom/
 └── PROMPT-CONTENU.md
 ```
 
-- Placer tous les fichiers au même niveau
+---
+
+<!-- _class: light -->
+
+## Pratique — Quick Start : cadrer le besoin
+
+1. Choisir une fonction de blog.
+2. Écrire le problème en une phrase.
+3. Définir un résultat observable.
 
 ---
 
-## Quick Start — 3. Règle d'or de la présentation
+## Pratique — Quick Start : planifier
 
-- **Slide 2** : Plan de la présentation obligatoire
-- **Visuel épuré** : 3 puces maximum par diapositive
-- **Dernière partie** : Quick Start clôture la présentation
+1. Choisir la partie de stack utile.
+2. Lister les étapes dans l’ordre.
+3. Prévoir un test par résultat attendu.
+
+---
+
+<!-- _class: light -->
+
+## Pratique — Quick Start : vérifier
+
+- Le lab répond-il au besoin défini ?
+- La technologie est-elle justifiée ?
+- Un étudiant peut-il suivre et vérifier chaque étape ?
+
+**Livrable :** un plan prêt à être développé en lab.

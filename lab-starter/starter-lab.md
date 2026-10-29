@@ -26,18 +26,21 @@ style: |
 ---
 
 <!-- _class: lead -->
+<!-- _class: lead -->
+<!-- _paginate: false -->
 
 # Lab-Starter
 
 **Préparer son environnement de développement**
 
-Git · Windows · VS Code 
+Git · Windows · VS Code
 
----
-# Plan
-1. Les problèmes
-2. Les solutions
-3. les etapes pour resoudre chaque problèmes
+<br>
+
+**Réalisé par :** Soukayna Asaas
+
+**Encadré par :** ES-SARRAJ FOUAD
+
 ---
 
 # 1. Les problèmes
