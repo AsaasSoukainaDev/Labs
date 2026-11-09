@@ -25,7 +25,7 @@ Utilise-la pour créer ou adapter des exercices PHP, des exemples de notions du 
 1. Reformule le livrable attendu et choisis le chemin demandé. Préserve les fichiers existants; ne les remplace pas sans examiner leur contenu.
 2. Déduis la version PHP et les dépendances à partir des fichiers du projet. N'utilise que des fonctions, syntaxes et commandes compatibles.
 3. Crée un sous-dossier par notion ou exercice lorsque plusieurs exemples sont demandés. Dans chaque sous-dossier, fournis un fichier PHP exécutable nommé `exemple.php` et un `tutoriel.md` associé. Si une structure existante impose d'autres noms, conserve-la et documente clairement le chemin de l'exemple.
-4. Dans chaque tutoriel, indique l'objectif, les fichiers concernés, le déroulé du code, la commande à exécuter depuis un répertoire précis, le résultat attendu, le lien avec l'architecture du projet et une limite ou un exercice complémentaire. Adapte le niveau de détail à la demande.
+4. Dans chaque tutoriel, explique l'exemple lui-même, pas seulement la notion : parcours les lignes ou blocs importants dans l'ordre d'exécution, définis le rôle des éléments PHP employés, et relie chaque étape à son effet observable. Indique aussi l'objectif, les fichiers concernés, la commande à exécuter depuis un répertoire précis, le résultat attendu, le lien avec l'architecture du projet et une limite ou un exercice complémentaire. Adapte le niveau de détail à la demande.
 5. Relie chaque exemple à un cas d'usage concret du projet. Distingue clairement une démonstration autonome d'une fonctionnalité réellement intégrée.
 6. Garde le code petit et pédagogique : entrées explicites, noms descriptifs, types lorsque le projet les utilise et sorties observables. Montre les exceptions traitées à une frontière appropriée; emploie les namespaces selon l'autoload réel; n'emploie un trait que pour un comportement partagé qui s'y prête.
 7. Ajoute ou actualise un README parent qui liste chaque notion, son exemple et son tutoriel, avec les commandes de démarrage quand plusieurs dossiers sont concernés.
@@ -50,6 +50,7 @@ Utilise-la pour créer ou adapter des exercices PHP, des exemples de notions du 
 ## Vérification finale
 
 - Chaque notion demandée possède un sous-dossier avec un exemple PHP et son tutoriel associé, sauf convention existante documentée.
+- Chaque tutoriel explique concrètement les lignes ou blocs importants de son exemple et le chemin d'exécution jusqu'au résultat.
 - Les exemples respectent la version et les conventions constatées.
 - Le README parent référence les exemples, les tutoriels et les commandes valides.
 - Le statut des vérifications est rapporté sans exagération.

@@ -4,9 +4,16 @@
 
 Refuser un article dont le titre est vide et afficher un message compréhensible sans interrompre toute la démonstration.
 
-## Lire l'exemple
+## Explication pas à pas
 
-Dans [`exemple.php`](exemple.php), la fonction `publierArticle()` nettoie le titre avec `trim()`. Si le titre est vide, elle lance une `InvalidArgumentException` avec `throw`. L'appelant encadre l'opération avec `try` et intercepte précisément cette exception avec `catch`.
+Ouvre [`exemple.php`](exemple.php) et suis les blocs dans l'ordre :
+
+1. `declare(strict_types=1)` active le typage strict pour les appels de fonctions dans ce fichier. La fonction reçoit donc un titre déclaré comme chaîne (`string $titre`).
+2. `publierArticle()` applique `trim()` au titre. Par exemple, une valeur composée d'espaces devient une chaîne vide.
+3. Le `if ($titre === '')` détecte cette entrée invalide. `throw new InvalidArgumentException(...)` interrompt alors l'exécution normale de la fonction et transmet une exception à l'appelant.
+4. Si le titre n'est pas vide, `sprintf()` construit le message de confirmation qui est renvoyé par `return`.
+5. La boucle `foreach` essaie deux valeurs : un titre valide, puis une chaîne d'espaces. Le bloc `try` appelle la fonction et affiche son résultat quand elle réussit.
+6. Pour la deuxième valeur, la fonction lance l'exception. L'exécution saute alors à `catch`, qui affiche le message de refus. Le programme continue ensuite normalement.
 
 La fonction détecte la donnée invalide; le point d'entrée décide comment présenter le refus. Cette séparation évite de mélanger la règle métier et son affichage.
 
@@ -24,6 +31,8 @@ Résultat attendu :
 Article publie : Les exceptions en PHP
 Publication refusee : Le titre ne peut pas être vide.
 ```
+
+La première ligne vient du `return` de `publierArticle()`. La seconde vient du `catch`, car le titre composé d'espaces est devenu vide après `trim()`.
 
 ## À retenir
 
