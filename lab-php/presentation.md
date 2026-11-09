@@ -52,10 +52,10 @@ style: |
 
 ## Introduction & Stack Technique
 
-- Présenter l'objectif du lab et son lien avec le projet technique.
-- Lister les technologies, outils et versions réellement utilisés.
-- Expliquer brièvement le rôle de chaque composant.
+- **Compétence : Développement de la partie back-end.**
+- **3.0.U1 — PHP moderne** et **3.0.U2 — POO essentielle** : exceptions, namespaces et traits.
 
+- **Stack étudiée :** PHP 8.3 et PHP CLI. les exercices restent autonomes, sans framework ni base de données.
 ---
 
 <!-- _class: light -->
@@ -70,11 +70,11 @@ style: |
 
 <!-- _class: problem -->
 
-## Problème
+## Travail demandé
 
-- À compléter à partir de la réponse de l'étudiant : quel problème concret motive ce lab ?
-- Préciser le contexte et les conséquences constatées.
-- Ne pas présenter d'exemple comme un problème vécu sans confirmation.
+1. Rechercher les trois notions et en expliquer les concepts clés.
+2. Réaliser un exemple pratique pour chacune dans le contexte du projet.
+3. Vérifier les exemples et expliquer leur intégration à l'architecture.
 
 ---
 
@@ -82,10 +82,8 @@ style: |
 
 ## Solution et mise en pratique
 
-- Présenter la démarche proposée par l'étudiant, après l'avoir recueillie.
-- Prévoir un Quick Start et un premier exemple PHP exécutable.
-- Montrer un exercice sur les erreurs et exceptions, un sur les namespaces et un sur les traits, liés au projet.
-- Terminer par l'intégration et la vérification des exemples.
+- Créer un exemple PHP pour chacune des trois notions : exceptions, namespaces et traits.
+- Exécuter les exemples et observer leurs résultats pour comprendre le fonctionnement de chaque notion.
 
 ---
 
@@ -93,6 +91,6 @@ style: |
 
 ## Démonstrations et livrables
 
-- Exemples PHP à compléter selon l'environnement réel du projet.
-- Résultats des vérifications à présenter après exécution.
-- Dernière diapositive : solution ou livrable, sans conclusion ni remerciements.
+- Exécuter `php .\erreurs-exceptions\exemple.php`, `php .\namespaces\demo.php` et `php .\traits\exemple.php` depuis `lab-php/pratique`.
+- Vérifier le refus d'un titre vide, l'affichage de l'article trouvé et les dates de création de l'article et du commentaire.
+- Livrables : trois exemples PHP exécutables et leurs tutoriels pas à pas.
