@@ -5,7 +5,7 @@ description: "Créer ou adapter les livrables d'un lab à partir de son README e
 
 # Création de lab
 
-Cette skill orchestre la préparation des livrables d'un lab. Pour la mise en forme de la présentation, appliquer aussi la skill `marp`. Pour créer une structure de fichiers, appliquer la skill `creator`.
+Cette skill orchestre la préparation des livrables d'un lab. Pour la mise en forme de la présentation, appliquer aussi la skill `marp`. Pour créer une structure de fichiers ou une skill, appliquer la skill `skill-creator`.
 
 ## Règles
 
