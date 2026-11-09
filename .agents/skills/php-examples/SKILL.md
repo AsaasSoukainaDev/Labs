@@ -1,6 +1,6 @@
 ---
 name: php-examples
-description: Creates, adapts, and validates practical PHP examples that fit a project's PHP version and architecture. Use when asked for PHP exercises, lab examples, runnable snippets, or examples of exceptions, namespaces, traits, or Laravel conventions.
+description: Creates, adapts, and validates PHP examples with a step-by-step tutorial for each topic, following the project's PHP version and architecture. Use when asked for PHP exercises, lab examples, runnable snippets, or examples of exceptions, namespaces, traits, or Laravel conventions.
 ---
 
 # PHP Example Creator
@@ -24,11 +24,13 @@ Utilise-la pour créer ou adapter des exercices PHP, des exemples de notions du 
 
 1. Reformule le livrable attendu et choisis le chemin demandé. Préserve les fichiers existants; ne les remplace pas sans examiner leur contenu.
 2. Déduis la version PHP et les dépendances à partir des fichiers du projet. N'utilise que des fonctions, syntaxes et commandes compatibles.
-3. Relie chaque exemple à un cas d'usage concret du projet. Pour des notions distinctes, crée un petit exercice par notion et un guide concis si plusieurs commandes doivent être exécutées.
-4. Pour chaque exercice, explique son objectif, sa relation à l'architecture et comment le lancer. Distingue clairement une démonstration autonome d'une fonctionnalité réellement intégrée.
-5. Garde le code petit et pédagogique : entrées explicites, noms descriptifs, types lorsque le projet les utilise et sorties observables. Montre les exceptions traitées à une frontière appropriée; emploie les namespaces selon l'autoload réel; n'emploie un trait que pour un comportement partagé qui s'y prête.
-6. Valide les fichiers PHP avec `php -l` si PHP est disponible. Lance les tests ciblés pertinents si le projet en possède. Si les outils manquent, ne prétends pas avoir exécuté les exemples et indique précisément la vérification à effectuer.
-7. Résume les fichiers créés, les commandes d'exécution, le résultat de validation et les limites éventuelles.
+3. Crée un sous-dossier par notion ou exercice lorsque plusieurs exemples sont demandés. Dans chaque sous-dossier, fournis un fichier PHP exécutable nommé `exemple.php` et un `tutoriel.md` associé. Si une structure existante impose d'autres noms, conserve-la et documente clairement le chemin de l'exemple.
+4. Dans chaque tutoriel, indique l'objectif, les fichiers concernés, le déroulé du code, la commande à exécuter depuis un répertoire précis, le résultat attendu, le lien avec l'architecture du projet et une limite ou un exercice complémentaire. Adapte le niveau de détail à la demande.
+5. Relie chaque exemple à un cas d'usage concret du projet. Distingue clairement une démonstration autonome d'une fonctionnalité réellement intégrée.
+6. Garde le code petit et pédagogique : entrées explicites, noms descriptifs, types lorsque le projet les utilise et sorties observables. Montre les exceptions traitées à une frontière appropriée; emploie les namespaces selon l'autoload réel; n'emploie un trait que pour un comportement partagé qui s'y prête.
+7. Ajoute ou actualise un README parent qui liste chaque notion, son exemple et son tutoriel, avec les commandes de démarrage quand plusieurs dossiers sont concernés.
+8. Valide les fichiers PHP avec `php -l` si PHP est disponible. Lance les tests ciblés pertinents si le projet en possède. Si les outils manquent, ne prétends pas avoir exécuté les exemples et indique précisément la vérification à effectuer.
+9. Résume les fichiers créés, les commandes d'exécution, le résultat de validation et les limites éventuelles.
 
 ## Règles
 
@@ -47,7 +49,7 @@ Utilise-la pour créer ou adapter des exercices PHP, des exemples de notions du 
 
 ## Vérification finale
 
-- Chaque notion demandée possède un exemple clairement identifiable.
+- Chaque notion demandée possède un sous-dossier avec un exemple PHP et son tutoriel associé, sauf convention existante documentée.
 - Les exemples respectent la version et les conventions constatées.
-- Les chemins et commandes correspondent à la structure créée.
+- Le README parent référence les exemples, les tutoriels et les commandes valides.
 - Le statut des vérifications est rapporté sans exagération.
