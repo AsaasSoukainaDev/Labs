@@ -34,7 +34,7 @@ style: |
 
 ## Gestion des erreurs, namespaces et traits
 
-**Présenté par :** [nom de l'étudiant à confirmer]  
+**Présenté par :** Asaas soukayna  
 **Encadrant :** ES-SARRAJ Fouad
 
 ---
