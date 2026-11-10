@@ -41,9 +41,9 @@ style: |
 
 ## Six notions de la POO en PHP
 
-**Présenté par :** [Nom et prénom]  
-**Encadrant :** [Nom de l'encadrant]  
-**Date :** [Date de présentation]
+**Présenté par :** Asaas soukayna  
+**Encadrant :** ES-SARRAJ Fouad
+
 
 ---
 
@@ -89,7 +89,7 @@ style: |
 
 ## Problématique
 
-Les six notions de POO étudiées dans ce lab ne sont pas encore abordées dans les tutoriels. Il faut comprendre leur rôle et apprendre à les appliquer dans le contexte du projet.
+Les tutoriels n'abordent pas encore les six notions de POO ciblées par ce lab. Il faut donc en comprendre les concepts et apprendre à les appliquer dans le contexte du projet.
 
 ---
 
@@ -97,7 +97,10 @@ Les six notions de POO étudiées dans ce lab ne sont pas encore abordées dans 
 
 ## Solution proposée
 
-Étudier et expliquer les six notions, créer un exemple pratique pour chacune dans le contexte du projet, puis tester les exemples et expliquer leur intégration à l'architecture.
+1. Rechercher les six notions et expliquer leurs concepts clés.
+2. Réaliser un exemple pratique pour chacune dans le contexte du projet.
+3. Tester les exemples et expliquer leur intégration à l'architecture.
+4. Présenter les résultats dans ce support Marp.
 
 ---
 
