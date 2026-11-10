@@ -19,6 +19,10 @@ style: |
   ul { line-height: 1.4; }
   li { margin: 0.18em 0; }
   section.title { background: #0F172A; color: #F8FAFC; text-align: center; justify-content: center; }
+  section.title .title-logos { display: flex; align-items: center; justify-content: center; gap: 40px; margin: 0 auto 24px; }
+  section.title .title-logos img { display: block; object-fit: contain; }
+  section.title .ofppt-logo { width: 104px; height: 104px; }
+  section.title .title-logos .solicode-logo { width: 250px; height: 84px; object-fit: cover; object-position: center; }
   section.title h1 { color: #F8FAFC; border: 0; }
   section.title h2 { color: #CBD5E1; }
   section.problem h1 { color: #B45309; border-color: #F59E0B; }
@@ -29,6 +33,11 @@ style: |
 ---
 
 <!-- _class: title -->
+
+<div class="title-logos">
+  <img class="ofppt-logo" src="images/ofppt_logo.png" alt="Logo OFPPT">
+  <img class="solicode-logo" src="images/logo_solicode.png" alt="Logo Solicode">
+</div>
 
 # lab-php
 
@@ -70,11 +79,9 @@ style: |
 
 <!-- _class: problem -->
 
-## Travail demandé
+## Problématique
 
-1. Rechercher les trois notions et en expliquer les concepts clés.
-2. Réaliser un exemple pratique pour chacune dans le contexte du projet.
-3. Vérifier les exemples et expliquer leur intégration à l'architecture.
+Les erreurs ne sont pas encore correctement gérées, les namespaces ne sont pas maîtrisés et le partage de code entre plusieurs classes reste difficile à mettre en place.
 
 ---
 
@@ -82,8 +89,8 @@ style: |
 
 ## Solution et mise en pratique
 
-- Créer un exemple PHP pour chacune des trois notions : exceptions, namespaces et traits.
-- Exécuter les exemples et observer leurs résultats pour comprendre le fonctionnement de chaque notion.
+- Créer un exemple PHP de gestion des erreurs avec les exceptions, un exemple d'organisation des classes avec les namespaces et un exemple de partage de code avec un trait.
+- Exécuter chaque exemple et observer le résultat pour comprendre comment utiliser ces trois notions.
 
 ---
 
