@@ -41,8 +41,8 @@ style: |
 
 ## [Titre du sujet]
 
-**Présenté par :** [Nom et prénom]  
-**Encadrant :** [Nom de l'encadrant]  
+**Présenté par :** Asaas soukayna  
+**Encadrant :** ES-SARRAJ Fouad  
 **Date :** [Date]
 
 ---
