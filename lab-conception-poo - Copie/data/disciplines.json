@@ -1,0 +1,26 @@
+[
+    {
+        "id": "disc_65a101",
+        "nom": "Yoga Vinyasa",
+        "description": "Séance axée sur la fluidité des mouvements, la respiration et la souplesse articulaire.",
+        "capaciteMax": 15
+    },
+    {
+        "id": "disc_65a102",
+        "nom": "Crossfit & Conditionnement",
+        "description": "Entraînement fonctionnel à haute intensité combinant haltérophilie et cardio.",
+        "capaciteMax": 20
+    },
+    {
+        "id": "disc_65a103",
+        "nom": "Boxe Anglaise",
+        "description": "Apprentissage des techniques de frappe, esquives et renforcement cardio-vasculaire.",
+        "capaciteMax": 12
+    },
+    {
+        "id": "disc_65a104",
+        "nom": "Pilates Fondations",
+        "description": "Renforcement musculaire profond, gainage et amélioration de la posture.",
+        "capaciteMax": 18
+    }
+]
