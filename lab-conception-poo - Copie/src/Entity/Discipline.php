@@ -44,7 +44,7 @@ class Discipline
         if (empty($nomNettoye)) {
             throw new InvalidArgumentException("Le nom de la discipline ne peut pas être vide.");
         }
-        if (mb_strlen($nomNettoye) < 2) {
+        if (strlen($nomNettoye) < 2) {
             throw new InvalidArgumentException("Le nom de la discipline doit contenir au moins 2 caractères.");
         }
         $this->nom = $nomNettoye;

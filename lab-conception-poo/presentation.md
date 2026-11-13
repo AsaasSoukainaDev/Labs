@@ -18,8 +18,16 @@ style: |
   strong { color: #0F766E; }
   li { margin: 0.16em 0; }
   section.title { background: #172033; color: #F8FAFC; text-align: center; justify-content: center; }
-  section.title h1 { color: #F8FAFC; border: 0; }
-  section.title h2 { color: #D1D5DB; }
+  section.title .title-logos { display: flex; align-items: center; justify-content: center; gap: 30px; margin: 0 auto 18px; }
+  section.title .title-logos img { display: block; object-fit: contain; }
+  section.title .ofppt-logo { width: 82px; height: 82px; }
+  section.title .title-logos img.solicode-logo { width: 210px; height: 70px; object-fit: cover; object-position: center; }
+  section.title .cover-kicker { color: #5EEAD4; font-size: 0.62em; font-weight: 700; margin: 0 0 8px; }
+  section.title h1 { color: #F8FAFC; border: 0; font-size: 2em; margin: 0.1em 0; }
+  section.title h2 { color: #D1D5DB; font-size: 1.12em; margin: 0.25em 0; }
+  section.title .cover-subtitle { color: #CBD5E1; font-size: 0.72em; margin: 0.5em 0 0; }
+  section.title .cover-meta { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 800px; margin: 30px auto 0; text-align: left; font-size: 0.68em; }
+  section.title .cover-meta p { margin: 0; }
   section.problem h1 { color: #9A3412; border-color: #F97316; }
   section.solution h1 { color: #0F766E; border-color: #14B8A6; }
   pre { font-size: 18px; line-height: 1.25; background: #172033; color: #F8FAFC; border-radius: 8px; padding: 16px; }
@@ -28,328 +36,259 @@ style: |
 
 <!-- _class: title -->
 
+<div class="title-logos">
+  <img class="ofppt-logo" src="images/ofppt_logo.png" alt="Logo OFPPT">
+  <img class="solicode-logo" src="images/logo_solicode.png" alt="Logo Solicode">
+</div>
+
+<p class="cover-kicker">Lab technique · Programmation PHP</p>
+
 # lab-conception-poo
 
-## Conception orientée objet en PHP
+## Concevoir une application en POO
 
-**Présenté par :** asaas soukayna  
-**Encadrant :** ES-SARRAJ Fouad  
+<p class="cover-subtitle">Du besoin au workflow, puis au code PHP</p>
 
-
----
-
-<!-- _class: light -->
-
-## Plan de présentation
-
-1. Introduction à la POO et stack technique
-2. Concepts fondamentaux et relations entre les classes
-3. Principes de conception et SOLID
-4. Problématique et analyse du besoin
-5. UML et réalisation de l'application
-6. Tests, démonstration et références
-
----
-
-## Introduction & Stack Technique
-
-- **Objectif :** apprendre à passer d'un besoin à une conception orientée objet claire et maintenable.
-- **PHP :** langage utilisé pour les exemples et l'application.
-- **Tailwind CSS :** création de l'interface responsive.
-- **UML :** représentation des classes et de leurs relations avant le développement.
-- **Périmètre fonctionnel :** ajouter et afficher des disciplines sportives, sans créer un système complet de salle de sport.
+<div class="cover-meta">
+  <p><strong>Présenté par</strong><br>Asaas soukayna</p>
+  <p><strong>Encadrant</strong><br>ES-SARRAJ Fouad</p>
+  <p><strong>Date</strong><br>À compléter</p>
+</div>
 
 ---
 
 <!-- _class: light -->
 
-## Pourquoi utiliser la POO ?
+## Plan
 
-- En programmation procédurale, le code est souvent organisé en fonctions qui manipulent des données.
-- En POO, les données et les actions liées sont organisées dans des objets.
-- Cette organisation aide à répartir les responsabilités et à réutiliser le code.
-- La POO demande aussi de bien concevoir les classes : trop de classes ou trop de dépendances peuvent rendre le code difficile.
+1. Comprendre la conception POO.
+2. Suivre le workflow en huit étapes.
+3. Appliquer ce workflow à l'application de salle de sport.
 
-**Exemple du lab :** une discipline sportive peut être représentée par un objet avec des données et des comportements associés.
+---
+
+## Partie 1 · Comprendre la conception POO
+
+- **Programmer en POO :** écrire avec des classes et des objets.
+- **Concevoir en POO :** décider quelles classes sont utiles, leurs rôles et leurs relations avant de coder.
+- Concevoir évite de mélanger formulaire, règles métier, stockage et affichage dans une seule classe.
+- Une bonne conception reste simple, compréhensible et facile à modifier.
 
 ---
 
 <!-- _class: light -->
 
-## Définitions : bases de la POO
+## Partie 2 · Workflow en huit étapes
 
-- **Classe :** modèle qui définit les données et comportements communs à des objets.
-- **Objet :** instance concrète d'une classe.
-- **Attribut :** donnée portée par un objet.
-- **Méthode :** action ou comportement défini dans une classe.
-- **Constructeur :** méthode appelée lors de la création d'un objet pour initialiser son état.
+1. Analyser le besoin.
+2. Identifier les objets et les classes.
+3. Définir les responsabilités.
+4. Choisir les attributs et les méthodes.
+5. Identifier les relations.
+6. Représenter les classes en UML.
+7. Vérifier la conception.
+8. Passer au code PHP.
 
----
-
-## Exemple : classe et objet
-
-Exemple pédagogique autonome, à adapter à la conception réelle du projet :
-
-```php
-<?php
-class Discipline
-{
-  public $nom;
-
-  public function __construct($nom)
-  {
-    $this->nom = $nom;
-  }
-}
-
-$discipline = new Discipline('Yoga');
-echo $discipline->nom;
-```
-
-`Discipline` est la classe; `$discipline` est un objet créé à partir de cette classe.
-
----
-
-## Définitions : organisation et relations
-
-- **Encapsulation :** protéger l'état d'un objet et contrôler son accès.
-- **Héritage :** spécialiser une classe en réutilisant une classe de base.
-- **Polymorphisme :** appeler un comportement commun dont l'exécution varie selon l'objet.
-- **Abstraction et interface :** exprimer un modèle ou un contrat commun sans imposer une implémentation unique.
-- **Association :** deux objets collaborent ou sont liés.
-- **Agrégation :** un objet regroupe d'autres objets qui peuvent exister séparément.
-- **Composition :** un objet est constitué d'autres objets dont le cycle de vie dépend de lui.
-
----
-
-<!-- _class: light -->
-
-## Encapsulation : contrôler les données
-
-Une propriété privée n'est pas modifiée directement depuis l'extérieur. Une méthode contrôle le changement.
-
-```php
-<?php
-class Discipline
-{
-  private $nom;
-
-  public function __construct($nom)
-  {
-    $this->nom = $nom;
-  }
-
-  public function getNom()
-  {
-    return $this->nom;
-  }
-}
-```
-
-Ici, l'accès au nom passe par `getNom()`. Les règles de validation du projet restent à définir.
-
----
-
-## Abstraction, interface et polymorphisme
-
-- Une **interface** définit les méthodes qu'une classe doit fournir.
-- Une **classe abstraite** peut partager du code et laisser certaines méthodes aux classes dérivées.
-- Le **polymorphisme** permet d'appeler une même méthode sur des objets différents.
-
-```php
-<?php
-interface Affichable
-{
-  public function afficher();
-}
-
-function presenter(Affichable $element)
-{
-  echo $element->afficher();
-}
-```
-
-Les classes qui implémentent `Affichable` peuvent produire leur propre affichage.
-
----
-
-<!-- _class: light -->
-
-## Principes de conception
-
-- **Responsabilité unique (SRP) :** une classe a une responsabilité principale.
-- **Forte cohésion :** les éléments d'une classe servent un même rôle.
-- **Faible couplage :** les classes dépendent le moins possible les unes des autres.
-- **Composition ou héritage :** choisir selon la relation réelle entre les objets; ne pas utiliser l'héritage seulement pour partager du code.
-
----
-
-<!-- _class: light -->
-
-## SOLID : les cinq principes
-
-- **SRP :** une classe, une responsabilité principale.
-- **OCP :** permettre d'ajouter un comportement sans modifier sans cesse le code existant.
-- **LSP :** une classe dérivée doit pouvoir remplacer sa classe de base sans casser le programme.
-- **ISP :** préférer plusieurs petits contrats à une interface trop large.
-- **DIP :** faire dépendre la logique importante de contrats, plutôt que de détails techniques.
-
-Ces principes aident à faire évoluer le code. Ils ne demandent pas de créer une abstraction pour chaque classe.
-
----
-
-## SOLID en pratique : responsabilités et extension
-
-**SRP, à éviter :** une même classe valide les données, les enregistre et génère le HTML.  
-**Amélioration :** séparer ces responsabilités selon les besoins du projet.
-
-**OCP, idée :** utiliser un contrat pour ajouter une nouvelle manière d'afficher sans modifier le code qui appelle l'affichage.
-
-```php
-<?php
-interface FormatAffichage
-{
-  public function formater($texte);
-}
-
-function afficher($format, $texte)
-{
-  echo $format->formater($texte);
-}
-```
-
-Exemple de principe; ce n'est pas une architecture déjà choisie pour l'application.
-
----
-
-<!-- _class: light -->
-
-## SOLID en pratique : substituer et séparer
-
-- **LSP, à éviter :** une classe enfant change le sens ou les règles d'une méthode héritée.
-- **Amélioration :** ne pas créer cette relation d'héritage si l'enfant ne respecte pas le contrat de la classe de base.
-- **ISP, à éviter :** obliger une classe à fournir des méthodes qu'elle n'utilise pas.
-- **Amélioration :** découper le contrat en interfaces plus petites.
-
-```php
-<?php
-interface Lisible
-{
-  public function lister();
-}
-
-interface Ajoutable
-{
-  public function ajouter($element);
-}
-```
-
-Les exemples illustrent les principes; les contrats finaux dépendent de la conception UML.
-
----
-
-## SOLID en pratique : inverser les dépendances
-
-**À éviter :** une classe métier crée elle-même un stockage précis et ne peut pas facilement en changer.
-
-**Amélioration :** la classe reçoit un objet qui respecte un contrat.
-
-```php
-<?php
-interface DepotDisciplines
-{
-  public function ajouter($discipline);
-  public function lister();
-}
-
-class GestionDisciplines
-{
-  private $depot;
-
-  public function __construct(DepotDisciplines $depot)
-  {
-    $this->depot = $depot;
-  }
-}
-```
-
-Le stockage utilisé par l'application n'est pas précisé dans le README.
+À chaque étape : poser une question, prendre une décision, puis la vérifier avec le besoin.
 
 ---
 
 <!-- _class: problem -->
 
-## Problématique et besoin
+## Étape 1 · Analyser le besoin
 
-> Comment analyser le besoin d'une application de gestion de salle de sport et concevoir une structure orientée objet en PHP qui soit claire, organisée, réutilisable et facile à maintenir ?
+**Objectif :** comprendre le résultat attendu.
 
-**Périmètre fonctionnel :** ajouter des disciplines et afficher la liste. Le projet ne vise pas à développer un système complet de gestion de salle de sport.
+**Méthode :** relever les fonctions et les limites du projet.
+
+**Exemple :** ajouter une discipline sportive et afficher les disciplines enregistrées.
+
+**Décision :** ne pas ajouter d'autres fonctions de gestion de salle de sport.
 
 ---
 
-<!-- _class: solution -->
+## Étape 2 · Identifier objets et classes
 
-## Solution proposée
+**Objectif :** repérer les éléments utiles du besoin.
 
-- Étudier les notions POO et les bonnes pratiques, avec des exemples PHP simples.
-- Analyser les deux fonctions attendues, puis identifier les objets, classes, données, méthodes et relations nécessaires.
-- Représenter la conception dans un diagramme UML et expliquer les choix faits.
-- Développer en PHP l'ajout et l'affichage des disciplines, avec une interface responsive Tailwind CSS.
-- Tester les fonctions et vérifier les interactions entre les classes.
+**Méthode :** relever les noms, puis vérifier si chacun a des données ou un rôle propre.
 
-**Choix de conception effectivement retenus :** à compléter après l'analyse et la réalisation.
+**Exemple :** `Discipline` est un objet du domaine. Le formulaire est un élément d'interface, pas forcément une classe métier.
+
+**Décision :** ne pas transformer chaque nom en classe.
 
 ---
 
 <!-- _class: light -->
 
-## UML : préparer le développement
+## Étape 3 · Définir les responsabilités
 
-Un diagramme de classes peut présenter :
+**Objectif :** donner un rôle clair à chaque classe.
 
-- Les classes et leurs noms.
-- Les attributs et les méthodes.
-- La visibilité : `+` public, `-` privé, `#` protégé.
-- Les relations entre classes et leurs multiplicités, par exemple `1` ou `0..*`.
+**Méthode :** compléter « cette classe est responsable de… ».
 
-Le diagramme final doit représenter les classes réellement choisies pour l'application et être expliqué à l'oral.
+**Exemple proposé :** `Discipline` représente une discipline; un contrôleur coordonne l'ajout et la liste.
+
+**Décision :** éviter une classe qui lit le formulaire, enregistre les données et génère toute la page.
 
 ---
 
-## Quick Start : Hello World
+## Étape 4 · Choisir données et méthodes
 
-Depuis un terminal avec PHP CLI installé :
+**Objectif :** garder les données et actions nécessaires.
+
+**Exemple proposé :** `Discipline` porte un `nom`; les opérations attendues sont `ajouter()` et `lister()`.
+
+**Question de contrôle :** quelle fonction du besoin utilise cet attribut ou cette méthode ?
+
+Le README ne précise pas d'autres champs ni les règles de validation : ils restent à définir.
+
+---
+
+<!-- _class: light -->
+
+## Étape 5 · Identifier les relations
+
+- **Association :** deux classes collaborent.
+- **Agrégation :** un objet regroupe des objets qui peuvent exister séparément.
+- **Composition :** les composants dépendent du cycle de vie de l'objet qui les possède.
+- **Héritage :** à utiliser seulement si un objet « est un » autre type.
+
+**Exemple proposé :** le contrôleur utilise un contrat d'accès aux disciplines. Aucune hiérarchie de disciplines n'est nécessaire dans le besoin actuel.
+
+---
+
+## Étape 6 · Représenter en UML
+
+- Une classe montre son nom, ses attributs et ses méthodes.
+- Visibilité : `+` public, `-` privé, `#` protégé.
+- Une flèche montre une relation ou une dépendance.
+- Les multiplicités (`1`, `0..*`) indiquent combien d'objets sont liés.
+
+**Méthode :** partir des classes et rôles définis, puis ajouter seulement les relations utiles.
+
+---
+
+<!-- _class: light -->
+
+## Étape 7 · Vérifier la conception
+
+Vérifier que :
+
+- chaque classe a un rôle clair;
+- les relations correspondent aux besoins;
+- l'ajout et l'affichage sont possibles;
+- le modèle ne contient pas de fonctions hors périmètre;
+- l'UML pourra correspondre au code PHP.
+
+**Bonnes pratiques :** responsabilité claire, faible couplage et forte cohésion.
+
+---
+
+## Étape 8 · Passer au code PHP
+
+**Objectif :** transformer les éléments validés en classes et collaborations.
+
+**Méthode :** coder les classes du modèle, relier les appels, puis construire l'interface.
+
+Exemple pédagogique de contrat, à adapter à la conception retenue :
+
+```php
+<?php
+interface DisciplineRepository
+{
+    public function ajouter($discipline);
+    public function lister();
+}
+```
+
+---
+
+<!-- _class: light -->
+
+## Partie 3 · Appliquer le workflow au projet
+
+**Besoin :** application web de gestion de salle de sport.
+
+**Fonctions :**
+
+- ajouter une discipline;
+- afficher les disciplines enregistrées.
+
+**Stack :** PHP POO, Tailwind CSS et UML.
+
+Le stockage et les choix d'architecture ne sont pas précisés dans le README.
+
+---
+
+## Projet · Classes proposées
+
+| Classe proposée | Rôle |
+|:--|:--|
+| `Discipline` | Représenter une discipline. |
+| `DisciplineRepository` | Définir l'ajout et la lecture. |
+| `DisciplineController` | Coordonner la demande. |
+| Vue | Afficher formulaire et liste avec Tailwind CSS. |
+
+Cette organisation est une proposition de travail, pas une architecture déjà réalisée.
+
+---
+
+<!-- _class: light -->
+
+## Projet · Diagramme UML proposé
+
+```text
++---------------------------+
+| Discipline                |
++---------------------------+
+| - nom: string             |
++---------------------------+
+| + nom(): string           |
++---------------------------+
+
+DisciplineController ..> DisciplineRepository
+DisciplineRepository ..> Discipline : 0..*
+
+«interface» DisciplineRepository
++ ajouter(Discipline): void
++ lister(): Discipline[]
+```
+
+À confirmer après l'analyse. Le stockage, les validations et les classes finales restent à décider.
+
+---
+
+## Projet · Parcours des fonctions
+
+**Ajouter :** formulaire → contrôleur → discipline → dépôt.  
+**Afficher :** contrôleur → dépôt → liste → vue Tailwind.
+
+Le contrôleur coordonne; la vue présente les données. Le dépôt représente un contrat, sans imposer ici un type de stockage.
+
+---
+
+<!-- _class: light -->
+
+## Quick Start · Hello World
+
+Depuis PowerShell avec PHP CLI installé :
 
 ```powershell
 php -v
-php -r 'echo "Hello, POO en PHP !" . PHP_EOL;'
+php -r 'echo "Hello, conception POO !" . PHP_EOL;'
 ```
 
-La première commande affiche la version disponible. Le README ne fixe pas de version minimale. La seconde exécute un exemple autonome sans dépendance au projet.
+Le README ne fixe pas de version minimale. Vérifier la version disponible avec `php -v` avant de développer.
 
 ---
 
-<!-- _class: light -->
+## Tests et livrable
 
-## Conception et démonstration
+- Tester l'ajout d'une discipline.
+- Tester l'affichage d'une liste vide puis renseignée.
+- Vérifier les interactions entre les classes.
+- Vérifier l'interface responsive.
+- Comparer les relations UML au code PHP.
 
-- **Diagramme UML :** à compléter avec les classes, attributs, méthodes et relations réellement retenus.
-- **Démonstration :** ajouter une discipline puis vérifier qu'elle apparaît dans la liste.
-- **Tests fonctionnels :** vérifier l'ajout et l'affichage de plusieurs disciplines.
-- **Tests de conception :** vérifier les méthodes des classes et leurs interactions.
-- **Interface :** vérifier l'affichage responsive sur différentes tailles d'écran.
-- **Résultats, captures et difficultés rencontrées :** à renseigner après exécution de l'application.
-
-**Livrable :** application au périmètre limité, diagramme UML et présentation des choix de conception et des résultats.
-
----
-
-<!-- _class: light -->
-
-## Références à consulter
-
-- Manuel PHP : [php.net/manual/fr](https://www.php.net/manual/fr/)
-- Documentation Tailwind CSS : [tailwindcss.com/docs](https://tailwindcss.com/docs)
-- Spécification UML : [omg.org/spec/UML](https://www.omg.org/spec/UML/)
-
-Ajouter les autres sources réellement consultées pendant les recherches.
+**Résultats et choix réellement retenus :** à compléter après le développement et les tests.

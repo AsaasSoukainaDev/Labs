@@ -61,7 +61,7 @@ class DisciplineService
     {
         $disciplines = $this->repository->findAll();
         foreach ($disciplines as $d) {
-            if (mb_strtolower($d->getNom()) === mb_strtolower(trim($nom))) {
+            if (strtolower($d->getNom()) === strtolower(trim($nom))) {
                 return true;
             }
         }
