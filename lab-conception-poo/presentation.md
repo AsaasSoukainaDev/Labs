@@ -61,24 +61,71 @@ style: |
 
 ## Plan
 
-1. Comprendre la conception POO.
-2. Suivre le workflow en huit étapes.
-3. Appliquer ce workflow à l'application de salle de sport.
+1. Introduction à la conception logicielle.
+2. Problématique : pourquoi concevoir avant de coder ?
+3. Conception préliminaire et conception orientée objet.
+4. Workflow de la conception POO.
+5. Application du workflow au projet de salle de sport.
+6. Tests et vérification.
 
 ---
 
-## Partie 1 · Comprendre la conception POO
+## Partie 1 · Introduction à la conception logicielle
 
-- **Programmer en POO :** écrire avec des classes et des objets.
-- **Concevoir en POO :** décider quelles classes sont utiles, leurs rôles et leurs relations avant de coder.
-- Concevoir évite de mélanger formulaire, règles métier, stockage et affichage dans une seule classe.
-- Une bonne conception reste simple, compréhensible et facile à modifier.
+La conception logicielle consiste à réfléchir à la structure d'une application avant de commencer son développement.
+
+Elle aide à décider :
+
+- comment organiser l'application;
+- quelles sont ses grandes parties;
+- comment ces parties vont travailler ensemble.
+
+**Objectif :** préparer une structure claire avant d'écrire le code.
+
+---
+
+<!-- _class: problem -->
+
+## Partie 2 · Pourquoi concevoir avant de coder ?
+
+Imaginons une classe qui affiche les formulaires, vérifie les données, enregistre les informations et affiche les résultats.
+
+- Le code devient difficile à comprendre.
+- Les modifications deviennent compliquées.
+- Les responsabilités sont mélangées.
+- Les erreurs sont plus difficiles à trouver.
+
+**Réponse :** réfléchir à l'organisation de l'application avant de commencer à coder.
 
 ---
 
 <!-- _class: light -->
 
-## Partie 2 · Workflow en huit étapes
+## Partie 3 · Deux niveaux de conception
+
+- **Conception préliminaire :** définir l'organisation générale de l'application et ses grandes parties.
+- **Conception orientée objet :** préciser les classes, leurs responsabilités, leurs données, leurs méthodes et leurs relations.
+
+Les deux approches sont complémentaires : la conception préliminaire donne une vue d'ensemble; la conception POO détaille l'organisation interne.
+
+---
+
+## Préliminaire ou conception POO ?
+
+| Conception préliminaire | Conception orientée objet |
+|:--|:--|
+| Organisation générale | Organisation des classes |
+| Grandes parties | Classes et objets |
+| Responsabilités générales | Responsabilités précises |
+| Architecture globale | Relations et diagramme UML |
+
+**Exemple :** pour la salle de sport, identifier d'abord les grandes parties, puis définir les classes qui réalisent les traitements.
+
+---
+
+<!-- _class: light -->
+
+## Partie 4 · Workflow de conception POO
 
 1. Analyser le besoin.
 2. Identifier les objets et les classes.
@@ -206,7 +253,7 @@ interface DisciplineRepository
 
 <!-- _class: light -->
 
-## Partie 3 · Appliquer le workflow au projet
+## Partie 5 · Appliquer le workflow au projet
 
 **Besoin :** application web de gestion de salle de sport.
 
@@ -283,7 +330,7 @@ Le README ne fixe pas de version minimale. Vérifier la version disponible avec 
 
 ---
 
-## Tests et livrable
+## Partie 6 · Tests et vérification
 
 - Tester l'ajout d'une discipline.
 - Tester l'affichage d'une liste vide puis renseignée.
