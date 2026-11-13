@@ -52,7 +52,7 @@ style: |
 <div class="cover-meta">
   <p><strong>Présenté par</strong><br>Asaas soukayna</p>
   <p><strong>Encadrant</strong><br>ES-SARRAJ Fouad</p>
-  <p><strong>Date</strong><br>À compléter</p>
+  
 </div>
 
 ---
@@ -283,26 +283,31 @@ Cette organisation est une proposition de travail, pas une architecture déjà r
 
 <!-- _class: light -->
 
-## Projet · Diagramme UML proposé
+## Projet · Diagramme de classes fourni
 
 ```text
-+---------------------------+
-| Discipline                |
-+---------------------------+
-| - nom: string             |
-+---------------------------+
-| + nom(): string           |
-+---------------------------+
+Coach
+  - int id_coach, string nom, string prenom
+  - string telephone, string email, string photo
+  + getters()
 
-DisciplineController ..> DisciplineRepository
-DisciplineRepository ..> Discipline : 0..*
+Discipline
+  - int id_discipline, string libelle
+  - string description
+  + getters()
 
-«interface» DisciplineRepository
-+ ajouter(Discipline): void
-+ lister(): Discipline[]
+Seance
+  - int id_seance, string titre, date date_seance
+  - time heure_debut, int duree_minutes, string niveau
+  - int nb_places, decimal prix, boolean actif
+  - int id_coach, int id_discipline
+  + getters()
+
+Coach "1" -- "0..*" Seance : anime
+Discipline "1" -- "0..*" Seance : contient
 ```
 
-À confirmer après l'analyse. Le stockage, les validations et les classes finales restent à décider.
+<small>Source Mermaid : [classe-diagramme.md](classe-diagramme.md). Coach et Seance dépassent le périmètre du README, centré sur l'ajout et la liste des disciplines.</small>
 
 ---
 
