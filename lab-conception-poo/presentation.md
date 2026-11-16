@@ -222,14 +222,17 @@ Le tableau explique le rôle des classes du modèle, sans décrire l'architectur
 
 ## Étape 4 · Définir les attributs et les méthodes
 
-Choisir les données et actions utiles, puis leur visibilité.
+## Projet · Classes du diagramme UML
 
-| Classe | Données / opérations proposées |
+| Classe | Responsabilité |
 |:--|:--|
-| `Discipline` | `- libelle: string`, `+ getters()` |
-| `DisciplineRepository` | `+ ajouter()`, `+ lister()` |
+| `Coach` | Représenter les informations d'un coach. |
+| `Discipline` | Représenter une discipline sportive. |
+| `Seance` | Représenter une séance sportive et ses informations. |
 
-`-` signifie privé; `+` signifie public. Chaque membre doit répondre à une fonction demandée.
+**Relations :**
+- Un `Coach` anime plusieurs `Seance`.
+- Une `Discipline` est liée à plusieurs `Seance`.
 
 ---
 
