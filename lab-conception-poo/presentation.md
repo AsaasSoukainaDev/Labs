@@ -4,15 +4,8 @@ theme: default
 paginate: true
 size: 16:9
 style: |
-  section {
-    box-sizing: border-box;
-    padding: 46px 62px;
-    font-family: "Segoe UI", sans-serif;
-    background: #F8FAFC;
-    color: #172033;
-    font-size: 25px;
-    line-height: 1.3;
-  }
+ section .diagram-figure { display: block; height: 470px; margin: 14px auto; object-fit: contain; border: 2px solid #CBD5E1; border-radius: 10px; }
+ 
   h1 { color: #172033; font-size: 1.65em; border-bottom: 4px solid #0F766E; padding-bottom: 0.2em; }
   h2 { color: #334155; font-size: 1.12em; }
   strong { color: #0F766E; }
@@ -30,6 +23,38 @@ style: |
   section.title .cover-meta p { margin: 0; }
   section.problem h1 { color: #9A3412; border-color: #F97316; }
   section.solution h1 { color: #0F766E; border-color: #14B8A6; }
+  section .process-line { display: flex; align-items: center; justify-content: center; gap: 12px; margin: 28px 0; }
+  section .process-node { flex: 1; padding: 18px 12px; border: 2px solid #0F766E; background: #FFFFFF; text-align: center; font-size: 0.8em; font-weight: 700; }
+  section .process-arrow { color: #0F766E; font-size: 1.1em; font-weight: 700; }
+  section .workflow-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin-top: 24px; }
+  section .workflow-step { min-height: 100px; padding: 12px; border-left: 4px solid #0F766E; background: #E2E8F0; font-size: 0.68em; }
+  section .workflow-step strong { display: block; font-size: 1.3em; margin-bottom: 6px; }
+  section .usecase-diagram { display: grid; grid-template-columns: 150px 1fr; gap: 18px; align-items: center; margin: 20px 0; }
+  section .usecase-actor { display: flex; flex-direction: column; align-items: center; gap: 8px; font-size: 0.72em; font-weight: 700; }
+  section .usecase-person { width: 52px; height: 82px; position: relative; }
+  section .usecase-head { position: absolute; top: 0; left: 18px; width: 16px; height: 16px; border: 2px solid #172033; border-radius: 50%; }
+  section .usecase-torso { position: absolute; top: 18px; left: 25px; width: 2px; height: 32px; background: #172033; }
+  section .usecase-arms { position: absolute; top: 30px; left: 7px; width: 38px; border-top: 2px solid #172033; }
+  section .usecase-leg { position: absolute; top: 46px; left: 25px; height: 28px; border-left: 2px solid #172033; transform-origin: top; }
+  section .usecase-leg-left { transform: rotate(28deg); }
+  section .usecase-leg-right { transform: rotate(-28deg); }
+  section .usecase-system { border: 2px solid #334155; padding: 12px 18px; background: #FFFFFF; }
+  section .usecase-system-title { margin: 0 0 8px; text-align: center; font-size: 0.66em; color: #475569; }
+  section .usecase-row { display: grid; grid-template-columns: 42px 1fr; align-items: center; gap: 10px; margin: 10px 0; }
+  section .usecase-link { width: 117px; margin-left: -65px; border-top: 2px solid #475569; }
+  section .usecase-oval { display: inline-block; padding: 8px 18px; border: 2px solid #0F766E; border-radius: 50%; text-align: center; font-size: 0.7em; }
+  section .project-flow { display: flex; align-items: center; justify-content: center; gap: 8px; margin: 18px 0; }
+  section .project-flow-node { padding: 12px 10px; border: 1px solid #64748B; background: #FFFFFF; text-align: center; font-size: 0.7em; }
+  section .project-flow-arrow { color: #0F766E; font-weight: 700; }
+  section .class-diagram { display: flex; flex-direction: column; gap: 8px; font-size: 0.58em; line-height: 1.15; }
+  section .class-top { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: start; }
+  section .class-box { border: 2px solid #334155; background: #FFFFFF; color: #172033; }
+  section .class-name { padding: 6px 10px; background: #0F766E; color: #FFFFFF; text-align: center; font-weight: 700; }
+  section .class-attributes { padding: 6px 10px; }
+  section .class-methods { padding: 6px 10px; border-top: 1px solid #64748B; }
+  section .class-relations { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; text-align: center; font-size: 0.88em; }
+  section .class-relation { padding: 5px 8px; border-top: 2px solid #475569; }
+  section .class-seance-attributes { display: grid; grid-template-columns: 1fr 1fr; gap: 0 16px; padding: 6px 10px; }
   pre { font-size: 18px; line-height: 1.25; background: #172033; color: #F8FAFC; border-radius: 8px; padding: 16px; }
   code { font-size: 0.82em; }
 ---
@@ -63,7 +88,7 @@ style: |
 
 1. Introduction à la conception logicielle.
 2. Problématique : pourquoi concevoir avant de coder ?
-3. Workflow de conception orientée objet en neuf étapes.
+3. Workflow de conception orientée objet en huit étapes.
 4. Application du workflow au projet de salle de sport.
 5. Quick Start et démonstration.
 6. Tests et vérification.
@@ -72,15 +97,14 @@ style: |
 
 ## Partie 1 · Introduction à la conception logicielle
 
-La conception logicielle consiste à réfléchir à la structure d'une application avant de commencer son développement.
+La conception logicielle prépare la structure de l'application avant le développement.
 
-Elle aide à décider :
-
-- comment organiser l'application;
-- quelles sont ses grandes parties;
-- comment ces parties vont travailler ensemble.
-
-**Objectif :** préparer une structure claire avant d'écrire le code.
+<div class="process-line">
+  <div class="process-node">Besoin</div><span class="process-arrow">→</span>
+  <div class="process-node">Conception</div><span class="process-arrow">→</span>
+  <div class="process-node">Développement</div><span class="process-arrow">→</span>
+  <div class="process-node">Tests</div>
+</div>
 
 ---
 
@@ -88,14 +112,15 @@ Elle aide à décider :
 
 ## Partie 2 · Pourquoi concevoir avant de coder ?
 
-Imaginons une classe qui affiche les formulaires, vérifie les données, enregistre les informations et affiche les résultats.
+Une seule classe qui affiche, vérifie et enregistre mélange plusieurs rôles.
 
-- Le code devient difficile à comprendre.
-- Les modifications deviennent compliquées.
-- Les responsabilités sont mélangées.
-- Les erreurs sont plus difficiles à trouver.
+| Sans conception | Avec une conception claire |
+|:--|:--|
+| Code désorganisé | Parties identifiées |
+| Rôles mélangés | Responsabilités définies |
+| Modifications dispersées | Changements mieux localisés |
 
-**Réponse :** réfléchir à l'organisation de l'application avant de commencer à coder.
+La conception aide à organiser le travail; elle ne supprime pas toutes les erreurs.
 
 ---
 
@@ -103,129 +128,154 @@ Imaginons une classe qui affiche les formulaires, vérifie les données, enregis
 
 ## Partie 3 · Workflow de conception orientée objet
 
-1. Analyser le besoin.
-2. Réaliser la conception préliminaire.
-3. Identifier les objets et les classes.
-4. Définir les responsabilités.
-5. Définir les attributs et les méthodes.
-6. Identifier les relations entre les classes.
-7. Représenter la conception avec UML.
-8. Vérifier et valider la conception.
-9. Passer à l'implémentation PHP.
+<div class="workflow-grid">
+  <div class="workflow-step">
+    <strong>01</strong>
+    Analyser le besoin et comprendre l'utilisateur
+  </div>
+  <div class="workflow-step">
+    <strong>02</strong>
+    Identifier les objets et les classes
+  </div>
+  <div class="workflow-step">
+    <strong>03</strong>
+    Définir les responsabilités
+  </div>
+  <div class="workflow-step">
+    <strong>04</strong>
+    Définir les attributs et les méthodes
+  </div>
+  <div class="workflow-step">
+    <strong>05</strong>
+    Identifier les relations entre les classes
+  </div>
+  <div class="workflow-step">
+    <strong>06</strong>
+    Représenter la conception avec UML
+  </div>
+  <div class="workflow-step">
+    <strong>07</strong>
+    Vérifier et valider la conception
+  </div>
+  <div class="workflow-step">
+    <strong>08</strong>
+    Passer à l'implémentation PHP
+  </div>
+</div>
 
-À chaque étape : poser une question, prendre une décision, puis la vérifier avec le besoin.
+On part de la compréhension du besoin, on construit et valide le modèle, puis on passe à l'implémentation.
 
 ---
 
 <!-- _class: problem -->
 
-## Étape 1 · Analyser le besoin
+## Étape 1 · Analyser le besoin et comprendre l'utilisateur
 
-**Objectif :** comprendre le résultat attendu.
+## Étape 1 · Analyser le besoin et comprendre l'utilisateur
 
-**Méthode :** relever les fonctions et les limites du projet.
+**Objectif :** comprendre le problème et identifier les attentes de l'utilisateur.
 
-**Exemple :** ajouter une discipline sportive et afficher les disciplines enregistrées.
+- **Empathie :** comprendre ses besoins et ses difficultés.
+- **Besoins :** recueillir les attentes.
+- **Fonctionnalités :** identifier les actions attendues.
+- **Périmètre :** définir les limites du projet.
 
-**Décision :** ne pas ajouter d'autres fonctions de gestion de salle de sport.
-
----
-
-## Étape 2 · Réaliser la conception préliminaire
-
-**Objectif :** définir les grandes parties de l'application avant de détailler les classes.
-
-**Méthode :** repérer les principaux rôles et les échanges entre eux, sans choisir les détails techniques qui ne sont pas précisés.
-
-**Exemple :** pour la salle de sport, prévoir une interface pour ajouter et lister, un traitement PHP et une partie qui gère les données des disciplines.
-
-**Décision :** conserver ce découpage général; le stockage n'est pas précisé dans le README.
+**Résultat :** un besoin clair, des fonctionnalités identifiées et un périmètre défini.
 
 ---
 
-## Étape 3 · Identifier les objets et les classes
+## Étape 2 · Identifier les objets et les classes
 
-**Objectif :** repérer les éléments utiles du besoin.
+**Objectif :** repérer les concepts utiles du domaine métier.
 
-**Méthode :** relever les noms, puis vérifier si chacun a des données ou un rôle propre.
+1. Relever les éléments importants du besoin.
+2. Identifier les objets qu'ils représentent.
+3. Créer une classe seulement si elle a des données ou un rôle nécessaire.
 
-**Exemple :** `Discipline` est un objet du domaine. Le formulaire est un élément d'interface, pas forcément une classe métier.
+**Exemple :** `Discipline` est un objet métier; le formulaire est un élément d'interface, pas automatiquement une classe.
 
-**Décision :** ne pas transformer chaque nom en classe.
+**Résultat :** une liste de classes candidates, sans classe inutile.
 
 ---
 
 <!-- _class: light -->
 
-## Étape 4 · Définir les responsabilités
+## Étape 3 · Définir les responsabilités
 
-**Objectif :** donner un rôle clair à chaque classe.
+Une classe = un rôle clair.
 
-**Méthode :** compléter « cette classe est responsable de… ».
+| Classe du diagramme | Responsabilité générale |
+|:--|:--|
+| `Coach` | Représenter les informations d'un coach. |
+| `Discipline` | Représenter une discipline sportive. |
+| `Seance` | Représenter une séance sportive. |
 
-**Exemple proposé :** `Discipline` représente une discipline; un contrôleur coordonne l'ajout et la liste.
-
-**Décision :** éviter une classe qui lit le formulaire, enregistre les données et génère toute la page.
-
----
-
-## Étape 5 · Définir les attributs et les méthodes
-
-**Objectif :** garder les données et actions nécessaires.
-
-**Exemple proposé :** `Discipline` porte un `nom`; les opérations attendues sont `ajouter()` et `lister()`.
-
-**Question de contrôle :** quelle fonction du besoin utilise cet attribut ou cette méthode ?
-
-Le README ne précise pas d'autres champs ni les règles de validation : ils restent à définir.
+Le tableau explique le rôle des classes du modèle, sans décrire l'architecture interne de l'application.
 
 ---
 
-<!-- _class: light -->
+## Étape 4 · Définir les attributs et les méthodes
 
-## Étape 6 · Identifier les relations entre les classes
+Choisir les données et actions utiles, puis leur visibilité.
 
-- **Association :** deux classes collaborent.
-- **Agrégation :** un objet regroupe des objets qui peuvent exister séparément.
-- **Composition :** les composants dépendent du cycle de vie de l'objet qui les possède.
-- **Héritage :** à utiliser seulement si un objet « est un » autre type.
+| Classe | Données / opérations proposées |
+|:--|:--|
+| `Discipline` | `- libelle: string`, `+ getters()` |
+| `DisciplineRepository` | `+ ajouter()`, `+ lister()` |
 
-**Exemple proposé :** le contrôleur utilise un contrat d'accès aux disciplines. Aucune hiérarchie de disciplines n'est nécessaire dans le besoin actuel.
-
----
-
-## Étape 7 · Représenter la conception avec UML
-
-- Une classe montre son nom, ses attributs et ses méthodes.
-- Visibilité : `+` public, `-` privé, `#` protégé.
-- Une flèche montre une relation ou une dépendance.
-- Les multiplicités (`1`, `0..*`) indiquent combien d'objets sont liés.
-
-**Méthode :** partir des classes et rôles définis, puis ajouter seulement les relations utiles.
+`-` signifie privé; `+` signifie public. Chaque membre doit répondre à une fonction demandée.
 
 ---
 
 <!-- _class: light -->
 
-## Étape 8 · Vérifier et valider la conception
+## Étape 5 · Identifier les relations entre les classes
 
-Vérifier que :
+| Relation | Sens | Exemple ou décision |
+|:--|:--|:--|
+| Association | Deux classes collaborent. | Le contrôleur utilise le repository. |
+| Agrégation | Groupe d'objets indépendants. | À confirmer selon le domaine. |
+| Composition | Les composants dépendent du cycle de vie du tout. | Non déduite des fonctions demandées. |
+| Héritage | Relation « est un ». | Ne pas en ajouter sans besoin. |
 
-- chaque classe a un rôle clair;
-- les relations correspondent aux besoins;
-- l'ajout et l'affichage sont possibles;
-- le modèle ne contient pas de fonctions hors périmètre;
-- l'UML pourra correspondre au code PHP.
-
-**Bonnes pratiques :** responsabilité claire, faible couplage et forte cohésion.
+Le diagramme fourni indique aussi les multiplicités : un coach ou une discipline est lié à `0..*` séances.
 
 ---
 
-## Étape 9 · Passer à l'implémentation PHP
+## Étape 6 · Représenter la conception avec UML
+
+UML aide à expliquer la conception avant le code.
+
+| Diagramme | Question à laquelle il répond |
+|:--|:--|
+| Use Case | Quelles fonctions l'utilisateur peut-il demander ? |
+| Classes | Quelles classes, données, méthodes et relations ? |
+| Séquence | Quels objets échangent, et dans quel ordre ? |
+
+Visibilités : `+` public, `-` privé, `#` protégé. Multiplicités : `1`, `0..*`.
+
+---
+
+<!-- _class: light -->
+
+## Étape 7 · Vérifier et valider la conception
+
+**Avant de coder, vérifier :**
+
+- les rôles et relations sont clairs;
+- les diagrammes racontent le même système;
+- le modèle couvre ajout et affichage, sans fonctions en plus;
+- la conception peut être traduite en PHP.
+
+**Résultat :** une conception simple, cohérente et liée au besoin.
+
+---
+
+## Étape 8 · Passer à l'implémentation PHP
 
 **Objectif :** transformer les éléments validés en classes et collaborations.
 
-**Méthode :** coder les classes du modèle, relier les appels, puis construire l'interface.
+**Flux :** classes → attributs et méthodes → collaborations → interface → tests progressifs.
 
 Exemple pédagogique de contrat, à adapter à la conception retenue :
 
@@ -246,10 +296,10 @@ interface DisciplineRepository
 
 **Besoin :** application web de gestion de salle de sport.
 
-**Fonctions :**
-
-- ajouter une discipline;
-- afficher les disciplines enregistrées.
+<div class="process-line">
+  <div class="process-node">Ajouter une discipline</div>
+  <div class="process-node">Afficher les disciplines enregistrées</div>
+</div>
 
 **Stack :** PHP orienté objet, Tailwind CSS et UML.
 
@@ -257,28 +307,52 @@ Le stockage et les choix d'architecture ne sont pas précisés dans le README.
 
 ---
 
-## Projet · Conception préliminaire
+## Projet · Étape 1 — Besoin et utilisateur
 
-**Objectif :** définir les grandes parties de l'application avant de détailler les classes.
+**Objectif :** comprendre le besoin et les grandes parties de l'application.
 
-**Méthode :** repérer l'interface, le traitement des demandes et la gestion des données.
+**Ce qu'on fait :** par empathie, se demander ce dont l'utilisateur a besoin; relever les fonctions attendues et la limite du projet; proposer un premier découpage général.
 
-**Exemple proposé :** une interface responsive pour ajouter et lister; un traitement PHP pour ces demandes; une partie qui fournit les disciplines à afficher.
+**Exemple :** l'utilisateur ajoute une discipline ou affiche la liste. Les grandes parties envisagées sont l'interface, le traitement des demandes et l'accès aux données.
 
-**Décision :** garder ce découpage général. Le README ne précise pas le stockage; il reste à décider.
+**Décision :** garder uniquement ces deux fonctions. Le stockage reste à décider; ce premier découpage ne définit pas encore les classes.
 
 ---
 
 ## Projet · Classes proposées
 
-| Classe proposée | Rôle |
+| Classe | Responsabilité |
 |:--|:--|
-| `Discipline` | Représenter une discipline. |
-| `DisciplineRepository` | Définir l'ajout et la lecture. |
-| `DisciplineController` | Coordonner la demande. |
-| Vue | Afficher formulaire et liste avec Tailwind CSS. |
+| `Coach` | Représenter les informations d'un coach. |
+| `Discipline` | Représenter une discipline sportive. |
+| `Seance` | Représenter une séance sportive et ses informations. |
 
-Cette organisation est une proposition de travail, pas une architecture déjà réalisée.
+**Relations :**
+- Un `Coach` anime plusieurs `Seance`.
+- Une `Discipline` est liée à plusieurs `Seance`.
+---
+
+## Projet · Diagramme de cas d'utilisation
+
+<div class="usecase-diagram">
+  <div class="usecase-actor">
+    <div class="usecase-person">
+      <span class="usecase-head"></span>
+      <span class="usecase-torso"></span>
+      <span class="usecase-arms"></span>
+      <span class="usecase-leg usecase-leg-left"></span>
+      <span class="usecase-leg usecase-leg-right"></span>
+    </div>
+    <span>Utilisateur</span>
+  </div>
+  <div class="usecase-system">
+    <p class="usecase-system-title">Application de salle de sport</p>
+    <div class="usecase-row"><span class="usecase-link"></span><span class="usecase-oval">Ajouter une discipline</span></div>
+    <div class="usecase-row"><span class="usecase-link"></span><span class="usecase-oval">Afficher les disciplines enregistrées</span></div>
+  </div>
+</div>
+
+L'acteur générique est relié aux deux fonctions connues. Aucun autre rôle ni droit n'est supposé.
 
 ---
 
@@ -286,38 +360,29 @@ Cette organisation est une proposition de travail, pas une architecture déjà r
 
 ## Projet · Diagramme de classes fourni
 
-```text
-Coach
-  - int id_coach, string nom, string prenom
-  - string telephone, string email, string photo
-  + getters()
-
-Discipline
-  - int id_discipline, string libelle
-  - string description
-  + getters()
-
-Seance
-  - int id_seance, string titre, date date_seance
-  - time heure_debut, int duree_minutes, string niveau
-  - int nb_places, decimal prix, boolean actif
-  - int id_coach, int id_discipline
-  + getters()
-
-Coach "1" -- "0..*" Seance : anime
-Discipline "1" -- "0..*" Seance : contient
-```
-
-<small>Source Mermaid : [classe-diagramme.md](classe-diagramme.md). Coach et Seance dépassent le périmètre du README, centré sur l'ajout et la liste des disciplines.</small>
+<img class="diagram-figure" src="images/diagramme-classes.png" alt="Diagramme UML">
 
 ---
 
 ## Projet · Parcours des fonctions
 
-**Ajouter :** formulaire → contrôleur → discipline → dépôt.  
-**Afficher :** contrôleur → dépôt → liste → vue Tailwind.
+**Ajouter**
+<div class="project-flow">
+  <div class="project-flow-node">Formulaire</div><span class="project-flow-arrow">→</span>
+  <div class="project-flow-node">Controller</div><span class="project-flow-arrow">→</span>
+  <div class="project-flow-node">Discipline<br><code>libelle</code></div><span class="project-flow-arrow">→</span>
+  <div class="project-flow-node">Repository<br><code>ajouter()</code></div>
+</div>
 
-Le contrôleur coordonne; la vue présente les données. Le dépôt représente un contrat, sans imposer ici un type de stockage.
+**Afficher**
+<div class="project-flow">
+  <div class="project-flow-node">Controller</div><span class="project-flow-arrow">→</span>
+  <div class="project-flow-node">Repository<br><code>lister()</code></div><span class="project-flow-arrow">→</span>
+  <div class="project-flow-node">Liste</div><span class="project-flow-arrow">→</span>
+  <div class="project-flow-node">Vue</div>
+</div>
+
+`DisciplineRepository` définit les opérations. `DisciplineController` coordonne; la vue présente le résultat.
 
 ---
 
@@ -338,10 +403,13 @@ Le README ne fixe pas de version minimale. Vérifier la version disponible avec 
 
 ## Partie 6 · Tests et vérification
 
-- Tester l'ajout d'une discipline.
-- Tester l'affichage d'une liste vide puis renseignée.
-- Vérifier les interactions entre les classes.
-- Vérifier l'interface responsive.
-- Comparer les relations UML au code PHP.
+| Test | Action | Résultat attendu |
+|:--|:--|:--|
+| Ajout | Ajouter une discipline. | Discipline enregistrée. |
+| Liste vide | Consulter la liste. | Liste vide affichée. |
+| Liste renseignée | Consulter la liste. | Disciplines affichées. |
+| Responsive | Tester sur plusieurs écrans. | Interface adaptée. |
+| Collaborations | Vérifier les appels entre classes et les liens UML/PHP. | Rôles et relations cohérents. |
 
+Réaliser les tests progressivement pendant le développement, puis compléter par une vérification globale.
 **Résultats et choix réellement retenus :** à compléter après le développement et les tests.
