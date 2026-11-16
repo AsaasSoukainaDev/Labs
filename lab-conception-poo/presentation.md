@@ -4,8 +4,16 @@ theme: default
 paginate: true
 size: 16:9
 style: |
- section .diagram-figure { display: block; height: 470px; margin: 14px auto; object-fit: contain; border: 2px solid #CBD5E1; border-radius: 10px; }
- 
+  section {
+    box-sizing: border-box;
+    padding: 46px 62px;
+    font-family: "Segoe UI", sans-serif;
+    background: #F8FAFC;
+    color: #172033;
+    font-size: 25px;
+    line-height: 1.3;
+  }
+  section .diagram-figure { display: block; height: 470px; margin: 14px auto; object-fit: contain; border: 2px solid #CBD5E1; border-radius: 10px; }
   h1 { color: #172033; font-size: 1.65em; border-bottom: 4px solid #0F766E; padding-bottom: 0.2em; }
   h2 { color: #334155; font-size: 1.12em; }
   strong { color: #0F766E; }
@@ -171,8 +179,6 @@ On part de la compréhension du besoin, on construit et valide le modèle, puis 
 
 ## Étape 1 · Analyser le besoin et comprendre l'utilisateur
 
-## Étape 1 · Analyser le besoin et comprendre l'utilisateur
-
 **Objectif :** comprendre le problème et identifier les attentes de l'utilisateur.
 
 - **Empathie :** comprendre ses besoins et ses difficultés.
@@ -330,6 +336,7 @@ Le stockage et les choix d'architecture ne sont pas précisés dans le README.
 **Relations :**
 - Un `Coach` anime plusieurs `Seance`.
 - Une `Discipline` est liée à plusieurs `Seance`.
+
 ---
 
 ## Projet · Diagramme de cas d'utilisation
@@ -412,4 +419,5 @@ Le README ne fixe pas de version minimale. Vérifier la version disponible avec 
 | Collaborations | Vérifier les appels entre classes et les liens UML/PHP. | Rôles et relations cohérents. |
 
 Réaliser les tests progressivement pendant le développement, puis compléter par une vérification globale.
+
 **Résultats et choix réellement retenus :** à compléter après le développement et les tests.
