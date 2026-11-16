@@ -43,9 +43,9 @@ style: |
 
 <p class="cover-kicker">Lab technique · Programmation PHP</p>
 
-# lab-conception-poo
+# lab-conception-orientée objet
 
-## Concevoir une application en POO
+## Concevoir une application orientée objet
 
 <p class="cover-subtitle">Du besoin au workflow, puis au code PHP</p>
 
@@ -63,9 +63,9 @@ style: |
 
 1. Introduction à la conception logicielle.
 2. Problématique : pourquoi concevoir avant de coder ?
-3. Conception préliminaire et conception orientée objet.
-4. Workflow de la conception POO.
-5. Application du workflow au projet de salle de sport.
+3. Workflow de conception orientée objet en neuf étapes.
+4. Application du workflow au projet de salle de sport.
+5. Quick Start et démonstration.
 6. Tests et vérification.
 
 ---
@@ -101,40 +101,17 @@ Imaginons une classe qui affiche les formulaires, vérifie les données, enregis
 
 <!-- _class: light -->
 
-## Partie 3 · Deux niveaux de conception
-
-- **Conception préliminaire :** définir l'organisation générale de l'application et ses grandes parties.
-- **Conception orientée objet :** préciser les classes, leurs responsabilités, leurs données, leurs méthodes et leurs relations.
-
-Les deux approches sont complémentaires : la conception préliminaire donne une vue d'ensemble; la conception POO détaille l'organisation interne.
-
----
-
-## Préliminaire ou conception POO ?
-
-| Conception préliminaire | Conception orientée objet |
-|:--|:--|
-| Organisation générale | Organisation des classes |
-| Grandes parties | Classes et objets |
-| Responsabilités générales | Responsabilités précises |
-| Architecture globale | Relations et diagramme UML |
-
-**Exemple :** pour la salle de sport, identifier d'abord les grandes parties, puis définir les classes qui réalisent les traitements.
-
----
-
-<!-- _class: light -->
-
-## Partie 4 · Workflow de conception POO
+## Partie 3 · Workflow de conception orientée objet
 
 1. Analyser le besoin.
-2. Identifier les objets et les classes.
-3. Définir les responsabilités.
-4. Choisir les attributs et les méthodes.
-5. Identifier les relations.
-6. Représenter les classes en UML.
-7. Vérifier la conception.
-8. Passer au code PHP.
+2. Réaliser la conception préliminaire.
+3. Identifier les objets et les classes.
+4. Définir les responsabilités.
+5. Définir les attributs et les méthodes.
+6. Identifier les relations entre les classes.
+7. Représenter la conception avec UML.
+8. Vérifier et valider la conception.
+9. Passer à l'implémentation PHP.
 
 À chaque étape : poser une question, prendre une décision, puis la vérifier avec le besoin.
 
@@ -154,7 +131,19 @@ Les deux approches sont complémentaires : la conception préliminaire donne une
 
 ---
 
-## Étape 2 · Identifier objets et classes
+## Étape 2 · Réaliser la conception préliminaire
+
+**Objectif :** définir les grandes parties de l'application avant de détailler les classes.
+
+**Méthode :** repérer les principaux rôles et les échanges entre eux, sans choisir les détails techniques qui ne sont pas précisés.
+
+**Exemple :** pour la salle de sport, prévoir une interface pour ajouter et lister, un traitement PHP et une partie qui gère les données des disciplines.
+
+**Décision :** conserver ce découpage général; le stockage n'est pas précisé dans le README.
+
+---
+
+## Étape 3 · Identifier les objets et les classes
 
 **Objectif :** repérer les éléments utiles du besoin.
 
@@ -168,7 +157,7 @@ Les deux approches sont complémentaires : la conception préliminaire donne une
 
 <!-- _class: light -->
 
-## Étape 3 · Définir les responsabilités
+## Étape 4 · Définir les responsabilités
 
 **Objectif :** donner un rôle clair à chaque classe.
 
@@ -180,7 +169,7 @@ Les deux approches sont complémentaires : la conception préliminaire donne une
 
 ---
 
-## Étape 4 · Choisir données et méthodes
+## Étape 5 · Définir les attributs et les méthodes
 
 **Objectif :** garder les données et actions nécessaires.
 
@@ -194,7 +183,7 @@ Le README ne précise pas d'autres champs ni les règles de validation : ils res
 
 <!-- _class: light -->
 
-## Étape 5 · Identifier les relations
+## Étape 6 · Identifier les relations entre les classes
 
 - **Association :** deux classes collaborent.
 - **Agrégation :** un objet regroupe des objets qui peuvent exister séparément.
@@ -205,7 +194,7 @@ Le README ne précise pas d'autres champs ni les règles de validation : ils res
 
 ---
 
-## Étape 6 · Représenter en UML
+## Étape 7 · Représenter la conception avec UML
 
 - Une classe montre son nom, ses attributs et ses méthodes.
 - Visibilité : `+` public, `-` privé, `#` protégé.
@@ -218,7 +207,7 @@ Le README ne précise pas d'autres champs ni les règles de validation : ils res
 
 <!-- _class: light -->
 
-## Étape 7 · Vérifier la conception
+## Étape 8 · Vérifier et valider la conception
 
 Vérifier que :
 
@@ -232,7 +221,7 @@ Vérifier que :
 
 ---
 
-## Étape 8 · Passer au code PHP
+## Étape 9 · Passer à l'implémentation PHP
 
 **Objectif :** transformer les éléments validés en classes et collaborations.
 
@@ -253,7 +242,7 @@ interface DisciplineRepository
 
 <!-- _class: light -->
 
-## Partie 5 · Appliquer le workflow au projet
+## Partie 4 · Appliquer le workflow au projet
 
 **Besoin :** application web de gestion de salle de sport.
 
@@ -262,9 +251,21 @@ interface DisciplineRepository
 - ajouter une discipline;
 - afficher les disciplines enregistrées.
 
-**Stack :** PHP POO, Tailwind CSS et UML.
+**Stack :** PHP orienté objet, Tailwind CSS et UML.
 
 Le stockage et les choix d'architecture ne sont pas précisés dans le README.
+
+---
+
+## Projet · Conception préliminaire
+
+**Objectif :** définir les grandes parties de l'application avant de détailler les classes.
+
+**Méthode :** repérer l'interface, le traitement des demandes et la gestion des données.
+
+**Exemple proposé :** une interface responsive pour ajouter et lister; un traitement PHP pour ces demandes; une partie qui fournit les disciplines à afficher.
+
+**Décision :** garder ce découpage général. Le README ne précise pas le stockage; il reste à décider.
 
 ---
 
@@ -322,13 +323,13 @@ Le contrôleur coordonne; la vue présente les données. Le dépôt représente 
 
 <!-- _class: light -->
 
-## Quick Start · Hello World
+## Partie 5 · Quick Start · Hello World
 
 Depuis PowerShell avec PHP CLI installé :
 
 ```powershell
 php -v
-php -r 'echo "Hello, conception POO !" . PHP_EOL;'
+php -r 'echo "Hello, conception orientée objet !" . PHP_EOL;'
 ```
 
 Le README ne fixe pas de version minimale. Vérifier la version disponible avec `php -v` avant de développer.
