@@ -328,6 +328,61 @@ Le stockage et les choix d'architecture ne sont pas précisés dans le README.
 
 ---
 
+<!-- _class: problem -->
+
+## Projet · Étape 1 — Empathie et définition du problème
+
+<span class="dt-tag">Design Thinking : Empathie · Définition</span>
+
+<div class="persona">
+<strong>Persona (fictif, pour la démonstration) :</strong> gérant d'une salle de sport, il note ses disciplines sur papier et perd du temps à les retrouver.
+</div>
+
+**Questions d'empathie :** comment gérez-vous vos disciplines aujourd'hui ? Qu'est-ce qui vous fait perdre du temps ?
+
+**Problème défini :** le gérant a besoin d'enregistrer et de consulter rapidement les disciplines de sa salle, car son suivi papier est désorganisé.
+
+---
+
+## Projet · Étape 1 — Idéation et périmètre
+
+<span class="dt-tag">Design Thinking : Idéation</span>
+
+| Idée | Décision |
+|:--|:--|
+| Ajouter une discipline | **Retenue (MVP)** |
+| Afficher les disciplines enregistrées | **Retenue (MVP)** |
+| Gérer coachs et séances | Reportée |
+| Planning, paiement, recherche | Hors périmètre |
+
+Cette décision justifie le choix de garder uniquement deux fonctions.
+
+---
+
+<!-- _class: light -->
+
+## Projet · Étape 1 (suite) — Prototypage
+
+<span class="dt-tag">Design Thinking : Prototypage</span>
+
+<div class="wire-row">
+  <div class="wire">
+    <p class="wire-title">Ajouter une discipline</p>
+    <div class="wire-field">Libellé : ____________</div>
+    <div class="wire-btn">Ajouter</div>
+  </div>
+  <div class="wire">
+    <p class="wire-title">Liste des disciplines</p>
+    <div class="wire-item">Musculation</div>
+    <div class="wire-item">Yoga</div>
+    <div class="wire-item">Boxe</div>
+  </div>
+</div>
+
+Les maquettes montrent les informations utiles : le champ `libelle` pour l'ajout, la liste pour l'affichage.
+
+---
+
 ## Projet · Classes proposées
 
 | Classe | Responsabilité |
