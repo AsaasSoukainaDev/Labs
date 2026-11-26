@@ -86,3 +86,28 @@ final class ValidateurLibelle
         }
     }
 }
+
+echo "=== AVANT : la règle est codée dans le validateur ===" . PHP_EOL;
+$validatorBefore = new ValidateurAvant();
+try {
+    $validatorBefore->valider('Yoga');
+    echo "Yoga accepté." . PHP_EOL;
+} catch (InvalidArgumentException $exception) {
+    echo $exception->getMessage() . PHP_EOL;
+}
+
+echo "=== APRÈS : règles composables ===" . PHP_EOL;
+$validator = new ValidateurLibelle([
+    new LongueurMinimale(4),
+    new LongueurMaximale(50),
+    new SansChiffres(),
+]);
+
+foreach (['Yoga', str_repeat('A', 51), 'Cardio2'] as $libelle) {
+    try {
+        $validator->valider($libelle);
+        echo $libelle . ' : accepté.' . PHP_EOL;
+    } catch (InvalidArgumentException $exception) {
+        echo $libelle . ' : ' . $exception->getMessage() . PHP_EOL;
+    }
+}

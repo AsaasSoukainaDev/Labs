@@ -125,3 +125,25 @@ final class DisciplineDAOMemoire implements DisciplineLecteur, DisciplineEcrivai
         return true;
     }
 }
+
+echo "=== AVANT : interface trop large ===" . PHP_EOL;
+$readOnlyBefore = new DisciplineLectureSeuleAvant([
+    ['id_discipline' => 1, 'libelle' => 'Yoga', 'description' => 'Discipline relaxante'],
+]);
+echo 'Nombre de lignes : ' . count($readOnlyBefore->afficherTous()) . PHP_EOL;
+try {
+    $readOnlyBefore->ajouter('Cardio', 'Endurance');
+} catch (BadMethodCallException $exception) {
+    echo 'Opération non supportée : ' . $exception->getMessage() . PHP_EOL;
+}
+
+echo "=== APRÈS : interfaces adaptées aux usages ===" . PHP_EOL;
+$store = new DisciplineDAOMemoire();
+$writerService = new AjoutDisciplineService($store);
+$readerService = new ListeDisciplinesService($store);
+
+echo json_encode($writerService->ajouter([
+    'libelle' => 'Cardio',
+    'description' => 'Endurance',
+]), JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . PHP_EOL;
+echo json_encode($readerService->lister(), JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . PHP_EOL;

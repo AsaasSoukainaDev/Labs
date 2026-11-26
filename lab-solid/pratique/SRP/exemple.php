@@ -131,3 +131,18 @@ final class DisciplineService
         return $this->presenter->liste($this->repository->tous());
     }
 }
+
+echo "=== AVANT : une classe fait plusieurs tâches ===" . PHP_EOL;
+$toutEnUn = new DisciplineToutEnUn();
+echo $toutEnUn->ajouter('Yoga', 'Discipline relaxante') . PHP_EOL;
+echo $toutEnUn->lister() . PHP_EOL;
+
+echo "=== APRÈS : responsabilités séparées ===" . PHP_EOL;
+$validator = new DisciplineValidator();
+$repository = new DisciplineRepository();
+$presenter = new DisciplineJsonPresenter();
+$service = new DisciplineService($validator, $repository, $presenter);
+
+echo $service->ajouter('Cardio', 'Exercices cardiovasculaires') . PHP_EOL;
+echo $service->ajouter('ab', 'Libellé trop court') . PHP_EOL;
+echo $service->lister() . PHP_EOL;

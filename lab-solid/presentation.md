@@ -23,9 +23,9 @@ style: |
 
 ## Les cinq principes SOLID appliqués à une application PHP MVC
 
-**Présenté par :** [nom et prénom]  
-**Encadrant :** [nom de l'encadrant]  
-**Date :** [date de présentation]
+**Présenté par :** Asaas Soukayna  
+**Encadrant :** ES-Sarraj Fouad  
+
 
 ---
 
@@ -35,9 +35,10 @@ style: |
 
 1. Introduction et stack technique
 2. Définitions des principes SOLID
-3. Changements appliqués au projet MVC
-4. Vérification des exemples et de l'API
-5. Problème réel et solution à documenter
+3. Problème constaté dans la conception initiale
+4. Application des principes au projet
+5. Démonstrations et vérification
+6. Conclusion
 
 ---
 
@@ -46,15 +47,16 @@ style: |
 - **PHP 8 orienté objet**, sans framework ni autoload Composer.
 - **Projet :** gestion des disciplines d'une salle de sport.
 - **Architecture :** API HTTP, contrôleur, service, entité, DAO PDO et MySQL.
-- Les exemples d'application utilisent le vrai service et des adaptateurs mémoire; aucun accès MySQL n'est nécessaire pour les lancer.
+- Les exercices de `pratique/` sont autonomes et utilisent un stockage mémoire; aucun accès MySQL n'est nécessaire pour les lancer.
 
 ### Quick Start
 
-Depuis `lab-solid/Lab` :
+Depuis la racine `lab-solid` :
 
 ```powershell
 php -v
-php .\hello-world.php
+php .\pratique\hello-world.php
+php .\pratique\DIP\exemple.php
 ```
 
 Résultat : `Bonjour SOLID !`
@@ -67,9 +69,9 @@ Résultat : `Bonjour SOLID !`
 
 **Définition :** un module doit porter une responsabilité cohérente et avoir une raison principale de changer.
 
-**Application :** `Discipline` ne fait plus l'accès SQL par héritage. L'entité, le DAO, le service, le validateur et le contrôleur ont des rôles séparés.
+**Application :** dans `pratique/SRP/exemple.php`, la version « avant » valide, stocke et formate dans une seule classe. La version « après » sépare ces responsabilités entre validateur, dépôt, presenter et service.
 
-**Fichiers :** `backend/models/Discipline.php`, `DisciplineDAO.php`, `services/DisciplineService.php`, `controllers/DisciplineController.php`.
+
 
 ---
 
@@ -77,9 +79,9 @@ Résultat : `Bonjour SOLID !`
 
 **Définition :** ajouter une variante de comportement en étendant le système sans modifier le code client stable.
 
-**Application :** `DisciplineService` reçoit `InputValidatorInterface`; une autre stratégie de validation peut être injectée sans changer le service. `BaseService` et sa validation spécifique ont été supprimés.
+**Application :** `ValidateurLibelle` reçoit des règles qui implémentent `RegleValidation`. On peut ajouter une règle, comme `SansChiffres`, sans modifier l'orchestrateur.
 
-**Fichiers :** `backend/contracts/InputValidatorInterface.php`, `services/DisciplineInputValidator.php`, `services/DisciplineService.php`.
+
 
 ---
 
@@ -89,19 +91,18 @@ Résultat : `Bonjour SOLID !`
 
 **Définition :** une implémentation doit pouvoir remplacer le contrat attendu sans casser les garanties du code client.
 
-**Application :** `DisciplineDAO` et `InMemoryDisciplineStore` fournissent lecture et écriture. Le même `DisciplineService` fonctionne avec l'un ou l'autre.
+**Définition concrète :** LSP est respecté lorsqu'une implémentation peut remplacer une autre implémentation du même contrat sans changer le résultat attendu ni provoquer d'erreur inattendue.
 
-**Fichiers :** les interfaces Reader/Writer, `DisciplineDAO.php` et `Lab/LSP/exemple.php`.
-
+**Application :** un DAO MySQL et un dépôt mémoire implémentent les mêmes contrats, par exemple `DisciplineReaderInterface` et `DisciplineWriterInterface`. `DisciplineService` reçoit ces interfaces et peut utiliser l'un ou l'autre adaptateur sans connaître sa classe concrète. Le service ne dépend pas d'une relation d'héritage avec le DAO.
 ---
 
 ## ISP — Ségrégation des interfaces
 
 **Définition :** un client ne dépend que des opérations dont il a besoin; préférer des contrats ciblés à une interface trop large.
 
-**Application :** lecture et écriture ont chacune leur interface. Un catalogue en lecture seule n'a pas à déclarer `add()`.
+**Application :** les besoins GET et POST sont séparés en contrats de lecture et d'écriture. Un client qui ne liste que les disciplines n'a pas à dépendre de la méthode d'ajout.
 
-**Fichiers :** `backend/contracts/DisciplineReaderInterface.php` et `DisciplineWriterInterface.php`.
+
 
 ---
 
@@ -111,35 +112,38 @@ Résultat : `Bonjour SOLID !`
 
 **Définition :** la logique applicative dépend d'abstractions; les détails concrets sont fournis au point de composition.
 
-**Application :** le service reçoit ses contrats au constructeur. `backend/api/api.php` assemble DAO, validateur, service et contrôleur.
+**Application :** le point de composition choisit les dépendances et les transmet au service. Le lecteur et l'écrivain correspondent aux contrats séparés par ISP; le validateur porte les règles d'entrée.
 
 ```php
-$service = new DisciplineService($dao, $dao, $validator);
+$service = new DisciplineService($reader, $writer, $validator);
 ```
+
+`$reader` implémente `DisciplineReaderInterface`, `$writer` implémente `DisciplineWriterInterface` et `$validator` implémente `InputValidatorInterface`.
 
 ---
 
 <!-- _class: problem -->
 
-## Problème concret du projet
+## Problème rencontré dans la conception initiale
 
-**À compléter par l'apprenant :**
-
-- Quel comportement réel a motivé l'analyse ?
-- Comment le reproduire ?
-- Quel résultat inattendu a été observé ?
-
-Les constats architecturaux ci-dessus proviennent de la lecture du code; ils ne sont pas présentés comme un incident vécu.
+Le service `DisciplineService` instanciait directement le `DisciplineDAO`, créant un couplage fort. Cela rendait difficile l'écriture de tests unitaires sans une base de données MySQL active. La validation des données était également éparpillée dans le service, ce qui violait le SRP.
 
 ---
 
 <!-- _class: solution -->
 
-## Changements et vérification
+## Solution proposée
 
-- Les exemples appliqués et leurs tutoriels sont dans `Lab/`.
-- L'API garde les champs JSON attendus par le frontend : `id_discipline`, `libelle`, `description`, puis `success` et `message` pour POST.
-- Le DAO associe une nouvelle discipline à la science ayant le plus petit identifiant, car le formulaire actuel ne transmet pas `id_science`.
-- La vérification HTTP GET/POST requiert un MySQL local configuré; la base n'était pas disponible pour cette exécution.
+- Créer `DisciplineReaderInterface` et `DisciplineWriterInterface` pour découpler le service du DAO (DIP) et fournir des contrats ciblés (ISP).
+- Injecter le lecteur, l'écrivain et le validateur dans `DisciplineService` au lieu d'instancier le DAO dans le service.
+- Créer `DisciplineInputValidator` pour isoler la validation (SRP) et permettre d'ajouter des variantes (OCP).
+- Assembler les implémentations concrètes au point d'entrée de l'application.
 
-**Solution proposée pour le problème réel :** [à compléter par l'apprenant]
+---
+
+## Vérification
+
+- Les exemples pratiques se lancent depuis la racine `lab-solid` avec `php .\pratique\DIP\exemple.php`.
+- L'API conserve les champs JSON attendus par le frontend : `id_discipline`, `libelle`, `description`, puis `success` et `message` pour POST.
+- **Dette technique temporaire :** le frontend n'envoie pas encore `id_science`, alors que la base le demande. Lors de la mise à jour du formulaire, ce champ devra être transmis et rendu obligatoire, ou la colonne et l'API devront être modifiées ensemble pour l'autoriser à être nullable. En attendant, le DAO choisit la science ayant le plus petit identifiant.
+- La vérification HTTP GET/POST complète nécessite une base MySQL configurée.

@@ -175,3 +175,21 @@ function importer(DisciplineStockage $stockage, array $libelles): int
     }
     return $nombre;
 }
+
+echo "=== AVANT : une sous-classe ne respecte pas la promesse ===" . PHP_EOL;
+try {
+    importerAvant(new DisciplineArchiveAvant(), ['Yoga']);
+} catch (LogicException $exception) {
+    echo 'Échec attendu : ' . $exception->getMessage() . PHP_EOL;
+}
+
+echo "=== APRÈS : les implémentations respectent le contrat ===" . PHP_EOL;
+$memoryStore = new StockageMemoire();
+$loggedStore = new StockageJournalise($memoryStore);
+$count = importer($loggedStore, ['Yoga', 'Cardio']);
+echo 'Disciplines importées : ' . $count . PHP_EOL;
+echo 'Journal : ' . implode(', ', $loggedStore->journal()) . PHP_EOL;
+print_r($loggedStore->afficherTous());
+
+$archive = new ArchiveDisciplines($loggedStore->afficherTous());
+echo 'Lignes consultées dans l’archive : ' . count($archive->afficherTous()) . PHP_EOL;

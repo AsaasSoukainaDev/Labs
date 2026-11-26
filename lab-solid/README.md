@@ -55,10 +55,9 @@ Une fois le Lab validé, tu appliqueras ces principes sur mon code réel. Voici 
 
 **Prêt à commencer ? Commence par me générer la Phase 1 (le Lab) en commençant par le principe SRP.**
 
-## Lab pédagogique généré
+## Livrable pratique
 
-- Parcours des cinq principes : [Lab/README.md](Lab/README.md)
+- Parcours pratique basé sur `src/` : [pratique/README.md](pratique/README.md)
 - Présentation : [presentation.md](presentation.md)
-- Application refactorisée : [MVC_Template-main/README.md](MVC_Template-main/README.md)
 
-À la demande explicite de l'utilisateur, la phase 2 a été appliquée à `MVC_Template-main`; les détails et limites sont documentés dans le README de l'application et dans les tutoriels par principe.
+Les lanceurs de `pratique/` chargent chacun le fichier source correspondant dans `src/`. Les exemples restent autonomes et utilisent le stockage mémoire décrit dans les sources.
