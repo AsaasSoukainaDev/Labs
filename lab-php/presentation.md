@@ -1,103 +1,284 @@
 ---
 marp: true
 theme: default
-paginate: true
 size: 16:9
+paginate: true
 style: |
-  section {
-    box-sizing: border-box;
-    padding: 48px 64px;
-    font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
-    background: #F8FAFC;
-    color: #0F172A;
-    font-size: 26px;
-    line-height: 1.32;
-  }
-  h1 { color: #0F172A; font-size: 1.7em; font-weight: 750; border-bottom: 4px solid #14B8A6; padding-bottom: 0.2em; }
-  h2 { color: #334155; font-size: 1.12em; font-weight: 650; }
-  strong { color: #0F766E; }
-  ul { line-height: 1.4; }
-  li { margin: 0.18em 0; }
-  section.title { background: #0F172A; color: #F8FAFC; text-align: center; justify-content: center; }
-  section.title .title-logos { display: flex; align-items: center; justify-content: center; gap: 40px; margin: 0 auto 24px; }
-  section.title .title-logos img { display: block; object-fit: contain; }
-  section.title .ofppt-logo { width: 104px; height: 104px; }
-  section.title .title-logos .solicode-logo { width: 250px; height: 84px; object-fit: cover; object-position: center; }
-  section.title h1 { color: #F8FAFC; border: 0; }
-  section.title h2 { color: #CBD5E1; }
-  section.problem h1 { color: #B45309; border-color: #F59E0B; }
-  section.solution h1 { color: #0F766E; border-color: #14B8A6; }
-  pre { font-size: 18px; line-height: 1.25; background: #0F172A; color: #F8FAFC; border-radius: 12px; padding: 18px; }
-  code { font-size: 0.82em; }
-  section.solution pre { font-size: 17px; }
+  section { font-size: 23px; }
+  h3 { margin: 0.4em 0 0.2em; }
+  pre { font-size: 17px; }
+  table { font-size: 20px; }
+  section.prompt pre { font-size: 15px; }
 ---
 
-<!-- _class: title -->
+# Débogage PHP avec Xdebug et VS Code
 
-<div class="title-logos">
-  <img class="ofppt-logo" src="images/ofppt_logo.png" alt="Logo OFPPT">
-  <img class="solicode-logo" src="images/logo_solicode.png" alt="Logo Solicode">
-</div>
+## Installation par un agent et utilisation sous Windows
 
-# lab-php
-
-## Gestion des erreurs, namespaces et traits
-
-**Présenté par :** Asaas soukayna  
-**Encadrant :** ES-SARRAJ Fouad
+**Présenté par** : Asaas soukayna
+**Encadré par** : ES-Sarraj Fouad
 
 ---
 
-<!-- _class: light -->
+## Plan
 
-## Plan de Présentation
-
-1. Introduction & Stack Technique
-2. Définitions
-3. Problème
-4. Solution
-
----
-
-## Introduction & Stack Technique
-
-- **Compétence : Développement de la partie back-end.**
-- **3.0.U1 — PHP moderne** et **3.0.U2 — POO essentielle** : exceptions, namespaces et traits.
-
-- **Stack étudiée :** PHP 8.3 et PHP CLI. les exercices restent autonomes, sans framework ni base de données.
----
-
-<!-- _class: light -->
-
-## Définitions
-
-- **Erreurs et exceptions :** détection et traitement des situations anormales en PHP.
-- **Namespace :** organisation des classes et prévention des conflits de noms.
-- **Trait :** réutilisation de méthodes dans plusieurs classes.
+1. Introduction
+2. Étapes d'installation
+3. Prompt donné à l'agent
+4. Utilisation
+5. Problèmes fréquents
+6. Conclusion
 
 ---
 
-<!-- _class: problem -->
+## 1. Introduction
 
-## Problématique
+> Un débogueur arrête le programme à un endroit précis pour observer son état, au lieu de multiplier les `var_dump`.
 
-Les erreurs ne sont pas encore correctement gérées, les namespaces ne sont pas maîtrisés et le partage de code entre plusieurs classes reste difficile à mettre en place.
+**PHP + Xdebug** → port **9003** → **VS Code (PHP Debug)**
 
----
-
-<!-- _class: solution -->
-
-## Solution et mise en pratique
-
-- Créer un exemple PHP de gestion des erreurs avec les exceptions, un exemple d'organisation des classes avec les namespaces et un exemple de partage de code avec un trait.
-- Exécuter chaque exemple et observer le résultat pour comprendre comment utiliser ces trois notions.
+- **Xdebug** : extension PHP qui expose l'exécution.
+- **PHP Debug** : extension VS Code qui écoute le port 9003 et pilote le pas à pas.
+- L'installation est confiée à un **agent**, grâce à un prompt précis.
 
 ---
 
-<!-- _class: solution -->
+## 2. Étapes d'installation
 
-## Démonstrations et livrables
+1. **Inspecter** l'environnement et les fichiers du projet.
+2. **Identifier** les dépendances nécessaires.
+3. **Installer** les dépendances.
+4. **Configurer** PHP et VS Code.
+5. **Démarrer** et **vérifier** que tout fonctionne.
 
-- Exécuter `php .\erreurs-exceptions\exemple.php`, `php .\namespaces\demo.php` et `php .\traits\exemple.php` depuis `lab-php/pratique`.
-- Vérifier le refus d'un titre vide, l'affichage de l'article trouvé et les dates de création de l'article et du commentaire.
-- Livrables : trois exemples PHP exécutables et leurs tutoriels pas à pas.
+Commandes de chaque étape sur les diapositives suivantes (PowerShell).
+
+---
+
+## Étapes 1 et 2 : inspecter et identifier
+
+```powershell
+php -v                      # version, NTS ou TS, x64 ou x86
+where.exe php               # chemin de php.exe (XAMPP, Laragon, autre)
+php --ini                   # php.ini actif
+php -m                      # Xdebug est-il déjà chargé ?
+code --version              # VS Code est-il disponible ?
+code --list-extensions | findstr php-debug
+php -i | clip               # copie la config, à coller dans xdebug.org/wizard
+```
+
+**Dépendances :** PHP, DLL Xdebug compatible (version, TS/NTS, architecture), VS Code, extension **PHP Debug**.
+
+---
+
+## Étape 3 : installer
+
+```powershell
+cd $HOME\Downloads                          # DLL téléchargée via xdebug.org/wizard
+$ext = php -r "echo ini_get('extension_dir');"
+Copy-Item .\php_xdebug-*.dll "$ext\php_xdebug.dll"
+code --install-extension xdebug.php-debug
+```
+
+- Le chemin `ext` est lu depuis PHP, jamais supposé.
+- Un dossier système peut demander les droits administrateur : l'agent doit **demander la permission**.
+
+---
+
+## Étape 4 : configurer `php.ini`
+
+```powershell
+$ini = ((php --ini | Select-String "Loaded Configuration File") -split ":",2)[1].Trim()
+Copy-Item $ini "$ini.bak"          # sauvegarde avant toute modification
+notepad $ini                       # ajouter les lignes ci-dessous
+```
+
+```ini
+zend_extension=xdebug
+xdebug.mode=debug
+xdebug.start_with_request=yes
+xdebug.client_port=9003
+xdebug.client_host=127.0.0.1
+```
+
+---
+
+## Étape 4 : configurer VS Code
+
+`.vscode/launch.json` :
+
+```json
+{ "version": "0.2.0", "configurations": [
+  { "name": "Listen for Xdebug", "type": "php", "request": "launch", "port": 9003 },
+  { "name": "Debug current PHP script", "type": "php", "request": "launch",
+    "program": "${file}", "cwd": "${fileDirname}", "port": 0,
+    "runtimeArgs": ["-dxdebug.start_with_request=yes"],
+    "env": { "XDEBUG_MODE": "debug,develop", "XDEBUG_CONFIG": "client_port=${port}" } }
+] }
+```
+
+Path mappings : inutiles en local, utiles seulement avec Docker ou une machine distante.
+
+---
+
+## Étape 5 : démarrer et vérifier
+
+```powershell
+php -v                         # doit afficher : with Xdebug v3.x.x
+php --ri xdebug                # mode debug, port 9003, hôte 127.0.0.1
+php -m | findstr /i xdebug     # xdebug présent dans les modules
+```
+
+- Redémarrer **Apache** (XAMPP ou Laragon) si le site web est utilisé.
+- Puis tester avec le fichier de test (partie Utilisation).
+
+---
+
+<!-- _class: prompt -->
+
+## 3. Prompt donné à l'agent (1/3)
+
+```text
+Act as a Senior PHP Developer and VS Code Configuration Expert.
+
+I want you to install, configure, and verify a complete PHP debugging
+environment in my Windows machine using VS Code and Xdebug.
+
+### Objectives
+1. Environment Detection
+   - Detect whether PHP is installed.
+   - Identify the PHP executable path.
+   - Detect whether I use XAMPP, Laragon, or standalone PHP.
+   - Identify the active php.ini configuration.
+   - Check the installed PHP version and architecture.
+2. Install Xdebug
+   - Check whether Xdebug is already installed.
+   - Install the correct Xdebug version compatible with my PHP version
+     and architecture.
+   - For XAMPP, use the correct PHP installation.
+   - Configure php.ini properly.
+   - Enable Xdebug with: xdebug.mode=debug, xdebug.start_with_request=yes,
+     xdebug.client_port=9003, xdebug.client_host=127.0.0.1
+```
+
+---
+
+<!-- _class: prompt -->
+
+## 3. Prompt donné à l'agent (2/3)
+
+```text
+3. Configure VS Code
+   - Install the PHP Debug extension by Xdebug.
+   - Create .vscode/launch.json.
+   - Configure the following debugging profiles:
+     Listen for Xdebug / Debug current PHP script
+   - Configure port 9003.
+   - Set appropriate path mappings if necessary.
+4. Verification
+   - Verify Xdebug using php -v.
+   - Verify Xdebug configuration using php --ri xdebug.
+   - Create a simple PHP test file.
+   - Test breakpoints, step over, step into, variables inspection,
+     and call stack.
+```
+
+---
+
+<!-- _class: prompt -->
+
+## 3. Prompt donné à l'agent (3/3)
+
+```text
+### Important Rules
+- First inspect my environment before making changes.
+- Do not assume PHP or XAMPP installation paths.
+- Do not overwrite existing configurations without creating backups.
+- Do not install incompatible Xdebug versions.
+- Do not modify unrelated PHP settings.
+- Ask for permission before making system-level changes.
+- If automatic installation is impossible, provide exact manual steps.
+- Explain every important change.
+
+### Final Deliverables
+- Working PHP + Xdebug configuration.
+- Correct .vscode/launch.json.
+- PHP debugging test file.
+- Confirmation that breakpoints work.
+- A short report explaining what was installed and configured.
+
+Start by inspecting my current environment, then proceed step by step.
+```
+
+---
+
+## 4. Utilisation : lancer une session
+
+### Méthode A : Listen for Xdebug
+1. Ouvrir le dossier du projet dans VS Code.
+2. Cliquer à gauche d'un numéro de ligne : **point d'arrêt**.
+3. Ouvrir *Run and Debug* (Ctrl + Maj + D), choisir **Listen for Xdebug**, puis **F5**.
+4. Exécuter le script : `php test_xdebug.php` (ou ouvrir la page dans le navigateur).
+
+### Méthode B : Debug current PHP script
+Ouvrir le fichier, choisir ce profil, puis **F5** : le script démarre directement.
+
+---
+
+## 4. Utilisation : fichier de test
+
+```php
+<?php
+function carre(int $n): int { return $n * $n; }
+
+function somme(array $nombres): int {
+    $total = 0;
+    foreach ($nombres as $n) {
+        $total += carre($n);
+    }
+    return $total;
+}
+
+echo "Somme des carrés : " . somme([1, 2, 3]) . "\n";   // attendu : 14
+```
+
+Point d'arrêt conseillé : `$total += carre($n);`
+
+---
+
+## 4. Utilisation : commandes et observation
+
+| Action | Raccourci |
+|---|---|
+| Continuer | F5 |
+| Step over | F10 |
+| Step into | F11 |
+| Step out | Maj + F11 |
+| Arrêter | Maj + F5 |
+
+- **Variables** : `$n` et `$total` évoluent à chaque tour.
+- **Pile d'appels** : après *step into*, `carre()` appelée depuis `somme()`.
+- **Espion** : suivre une expression, par exemple `$total + $n`.
+
+---
+
+## 5. Problèmes fréquents
+
+| Symptôme | Piste |
+|---|---|
+| Avertissement au lancement de PHP | DLL incompatible (version, TS/NTS, x64/x86) |
+| Xdebug absent de `php -m` | Mauvais `php.ini` modifié |
+| Point d'arrêt ignoré | VS Code n'écoute pas, ou port 9003 bloqué |
+| OK en terminal, pas sur le site | Apache non redémarré, autre `php.ini` |
+
+Diagnostic : activer `xdebug.log` avec un chemin de fichier.
+
+---
+
+## 6. Conclusion
+
+- Un **prompt précis** permet à l'agent d'inspecter, installer, configurer et vérifier.
+- Les règles imposent **sauvegarde**, **permission** et **aucun chemin supposé**.
+- L'utilisation se résume à : point d'arrêt → **F5** → exécuter → **F10 / F11**.
+
+> Xdebug ralentit PHP : `xdebug.mode=off` hors développement.

@@ -5,7 +5,6 @@
 Ce lab a pour objectif de comprendre la **conception orientée objet (POO)** et d'apprendre comment préparer la structure d'une application avant de commencer à coder.
 
 La conception POO consiste à analyser un besoin, identifier les classes nécessaires, définir leurs rôles et organiser leurs relations pour construire une application claire et facile à maintenir.
-
 L'objectif est de découvrir le workflow de conception POO et de comprendre comment passer d'un besoin à une conception, puis à son développement.
 
 ### Projet technique

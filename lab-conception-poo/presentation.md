@@ -361,7 +361,7 @@ Cette décision justifie le choix de garder uniquement deux fonctions.
 
 <!-- _class: light -->
 
-## Projet · Étape 1 (suite) — Prototypage
+## Projet ·  — Prototypage
 
 <span class="dt-tag">Design Thinking : Prototypage</span>
 
