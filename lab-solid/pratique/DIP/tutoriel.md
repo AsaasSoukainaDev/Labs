@@ -6,7 +6,6 @@ Comparer un service qui construit un DAO concret à un service qui reçoit un d�
 
 ## Fichiers concernés
 
-- Source de référence : [`src/5_dip.php`](../../src/5_dip.php)
 - Exemple autonome : [`exemple.php`](exemple.php), contenant directement les interfaces, classes et méthodes nécessaires à la démonstration.
 - Aucun serveur MySQL n'est requis.
 

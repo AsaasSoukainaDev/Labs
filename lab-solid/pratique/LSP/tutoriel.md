@@ -6,7 +6,6 @@ Observer une sous-classe qui casse la promesse de son parent, puis utiliser des 
 
 ## Fichiers concernés
 
-- Source : [`src/3_lsp.php`](../../src/3_lsp.php)
 - Lanceur : [`exemple.php`](exemple.php)
 
 ## Parcours de l'exemple

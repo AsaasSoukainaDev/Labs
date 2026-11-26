@@ -6,7 +6,6 @@ Séparer les contrats de lecture et d'écriture afin qu'un client n'ait pas à d
 
 ## Fichiers concernés
 
-- Source : [`src/4_isp.php`](../../src/4_isp.php)
 - Lanceur : [`exemple.php`](exemple.php)
 - Cas d'usage : consulter la liste (GET) et ajouter (POST) des disciplines.
 

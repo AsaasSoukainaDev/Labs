@@ -6,7 +6,7 @@ Ajouter ou combiner des règles de validation sans modifier un validateur qui co
 
 ## Fichiers concernés
 
-- Source : [`src/2_ocp.php`](../../src/2_ocp.php)
+
 - Lanceur : [`exemple.php`](exemple.php)
 - Contexte : le libellé est soumis à une longueur minimale, une limite de base de données et une règle de contenu.
 

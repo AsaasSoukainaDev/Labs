@@ -6,7 +6,6 @@ Comparer une classe qui valide, stocke et formate du JSON à une version où ces
 
 ## Fichiers concernés
 
-- Source : [`src/1_srp.php`](../../src/1_srp.php)
 - Lanceur : [`exemple.php`](exemple.php)
 - Fonctionnalité simulée : ajouter et lister des disciplines, sans base de données.
 
